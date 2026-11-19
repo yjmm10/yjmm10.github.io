@@ -70,7 +70,7 @@ a:focus-visible { outline: 2px solid var(--rust); outline-offset: 3px; border-ra
   font-size: 15px;
   color: var(--ink-2);
   text-decoration: none;
-  padding-bottom: 4px;
+  padding: 6px 2px 4px;   /* 加大触控热区 */
 }
 .nav-links a:hover { color: var(--ink); }
 .nav-links a[aria-current="page"] {
@@ -130,6 +130,7 @@ main { max-width: 1000px; margin: 0 auto; padding: 0 28px; }
 }
 .tagline { margin-top: 18px; color: var(--ink-2); max-width: 26em; }
 .hero-links { margin-top: 22px; display: flex; gap: 20px; flex-wrap: wrap; font-size: 14.5px; }
+.hero-links a { padding: 6px 0; }   /* 加大触控热区 */
 
 /* ---------- 分节 ---------- */
 section { margin-top: 88px; }

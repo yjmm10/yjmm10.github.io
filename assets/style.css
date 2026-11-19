@@ -46,6 +46,36 @@ img { max-width: 100%; height: auto; }
 
 ::selection { background: rgba(177, 78, 47, .18); }
 
+/* ---------- 背景氛围：暖色微光 + 细颗粒 ---------- */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(640px 420px at 14% 6%, rgba(201, 150, 64, .12), transparent 70%),
+    radial-gradient(760px 520px at 86% 94%, rgba(177, 78, 47, .09), transparent 70%),
+    radial-gradient(500px 360px at 78% 18%, rgba(201, 150, 64, .05), transparent 70%);
+}
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: .04;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+@media (prefers-color-scheme: dark) {
+  body::before {
+    background:
+      radial-gradient(640px 420px at 14% 6%, rgba(227, 178, 94, .08), transparent 70%),
+      radial-gradient(760px 520px at 86% 94%, rgba(217, 123, 79, .08), transparent 70%),
+      radial-gradient(500px 360px at 78% 18%, rgba(227, 178, 94, .04), transparent 70%);
+  }
+}
+
 a {
   color: var(--ink);
   text-decoration: underline;
@@ -129,8 +159,24 @@ main { max-width: 1000px; margin: 0 auto; padding: 0 28px; }
   letter-spacing: .14em;
 }
 .tagline { margin-top: 18px; color: var(--ink-2); max-width: 26em; }
-.hero-links { margin-top: 22px; display: flex; gap: 20px; flex-wrap: wrap; font-size: 14.5px; }
+.hero-links { margin-top: 20px; display: flex; gap: 20px; flex-wrap: wrap; font-size: 14.5px; }
 .hero-links a { padding: 6px 0; }   /* 加大触控热区 */
+
+/* ---------- 社交图标 ---------- */
+.social { margin-top: 20px; display: flex; gap: 12px; }
+.social a {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--ink-2);
+  transition: color .15s ease, border-color .15s ease, transform .15s ease;
+}
+.social a:hover { color: var(--rust); border-color: var(--rust-dim); transform: translateY(-2px); }
+.social svg { width: 19px; height: 19px; }
 
 /* ---------- 分节 ---------- */
 section { margin-top: 88px; }
@@ -210,6 +256,47 @@ h2::after {                        /* 标题后一道短金线，呼应星光 */
   text-align: center;
   letter-spacing: .03em;
 }
+.card h3 svg {
+  width: 17px;
+  height: 17px;
+  vertical-align: -2.5px;
+  margin-right: 7px;
+  color: var(--rust);
+}
+
+/* ---------- 邮箱名片 ---------- */
+.card-mail { grid-column: 1 / -1; }
+.mail-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+.mail-ic {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--rust-dim);
+  border-radius: 13px;
+  color: var(--rust);
+  flex: none;
+}
+.mail-ic svg { width: 21px; height: 21px; }
+.mail-text h3 { text-align: left; }
+.mail-text p { text-align: left; margin-top: 2px; }
+.mail-btn {
+  flex: none;
+  border: 1px solid var(--rust-dim);
+  color: var(--rust);
+  border-radius: 999px;
+  padding: 7px 18px;
+  font-size: 14px;
+  text-decoration: none;
+  transition: background .15s ease, color .15s ease;
+}
+.mail-btn:hover { background: var(--rust); border-color: var(--rust); color: var(--surface); }
 .card p { text-align: center; color: var(--ink-2); font-size: 14.5px; line-height: 1.7; margin-top: 8px; }
 
 /* ---------- 项目页 ---------- */

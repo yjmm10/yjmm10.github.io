@@ -18,6 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600;900&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="assets/avatar.webp" fetchpriority="high">
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
@@ -25,7 +26,7 @@
 <nav class="site-nav" aria-label="主导航">
   <span class="brand">Lucas</span>
   <div class="nav-links">
-    <a href="/" aria-current="page">首页</a>
+    <a href="./" aria-current="page">首页</a>
     <a href="projects.html">项目</a>
     <a class="ext" href="https://github.com/yjmm10" target="_blank" rel="noopener">GitHub</a>
   </div>
@@ -35,7 +36,10 @@
   <!-- 首屏 -->
   <section class="hero" aria-label="Lucas，独立开发者">
     <figure class="portrait reveal" style="--d:.05s">
-      <img src="assets/avatar.png" alt="Lucas 的头像：戴黑框眼镜、穿砖红色毛衣的插画肖像" width="800" height="800">
+      <picture>
+        <source srcset="assets/avatar.webp" type="image/webp">
+        <img src="assets/avatar.png" alt="Lucas 的头像：戴黑框眼镜、穿砖红色毛衣的插画肖像" width="800" height="800" decoding="async" fetchpriority="high">
+      </picture>
       <svg class="sparkle sparkle-1" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C12.9 6.9 17.1 11.1 24 12 17.1 12.9 12.9 17.1 12 24 11.1 17.1 6.9 12.9 0 12 6.9 11.1 11.1 6.9 12 0Z"/></svg>
       <svg class="sparkle sparkle-2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C12.9 6.9 17.1 11.1 24 12 17.1 12.9 12.9 17.1 12 24 11.1 17.1 6.9 12.9 0 12 6.9 11.1 11.1 6.9 12 0Z"/></svg>
     </figure>
@@ -88,12 +92,12 @@
     <h2>联系与支持</h2>
     <div class="card-grid">
       <article class="card">
-        <img class="qr" src="assets/wechat-qr.png" alt="微信加好友二维码" width="399" height="399">
+        <img class="qr" src="assets/wechat-qr.png" alt="微信加好友二维码" width="399" height="399" loading="lazy" decoding="async">
         <h3>微信 · 加个好友</h3>
         <p>扫码加我微信，备注来意，通过会快一些。</p>
       </article>
       <article class="card" id="support">
-        <img class="qr" src="assets/reward-qr.png" alt="微信赞赏收款码" width="399" height="460">
+        <img class="qr" src="assets/reward-qr.png" alt="微信赞赏收款码" width="399" height="460" loading="lazy" decoding="async">
         <h3>赞赏 · 请我喝杯咖啡</h3>
         <p>如果哪个项目帮到了你，扫码赞赏，请我喝杯咖啡。</p>
       </article>

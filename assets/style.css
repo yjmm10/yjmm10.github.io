@@ -281,6 +281,7 @@ body.home section { margin-top: 0; }
 .tip-tags { margin-top: 8px; font-size: 12px; line-height: 2.15; color: var(--ink-2); }
 .tip-tags > span {
   display: inline-block;
+  line-height: 18px;   /* 收紧底色高度，行距节奏仍由容器的 2.15 控制 */
   padding: 1px 8px;
   border-radius: 6px;
   white-space: nowrap;

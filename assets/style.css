@@ -173,66 +173,86 @@ body.home {
 body.home > nav,
 body.home > main,
 body.home > footer { width: 100%; }
-body.home main {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-body.home .hero { padding: 20px 0 8px; gap: 52px; grid-template-columns: 260px 1fr; }
-body.home .intro h1 { font-size: clamp(40px, 5.5vw, 58px); }
-body.home .role { margin-top: 8px; }
-body.home .tagline { margin-top: 12px; }
-body.home .status { margin-top: 12px; }
-body.home .social { margin-top: 18px; }
-body.home .hero-links { margin-top: 16px; }
+body.home main { flex: 1; display: grid; place-items: center; padding: 28px 0; }
+body.home .hero { display: block; padding: 0; }
 body.home section { margin-top: 0; }
 body.home footer { margin-top: 0; padding: 14px 28px 22px; }
 
-/* 联系条：小二维码 + 邮箱，一屏内展示 */
-.contact-strip {
-  display: flex;
-  align-items: stretch;
-  justify-content: center;
-  gap: 22px;
-  flex-wrap: wrap;
-  padding: 4px 0 20px;
-}
-.qr-mini {
+.hero-card {
+  width: min(940px, 100%);
   background: var(--surface);
   border: 1px solid var(--card-line);
-  border-radius: 16px;
-  padding: 14px 16px 12px;
+  border-radius: 28px;
+  padding: 44px 48px 40px;
+  box-shadow: 0 24px 70px var(--shadow-lg), 0 2px 8px var(--shadow);
+  display: grid;
+  grid-template-columns: 290px 1fr;
+  gap: 52px;
+  align-items: center;
+}
+.hero-left { display: flex; flex-direction: column; gap: 22px; }
+.hero-left .portrait { width: 100%; margin: 0; }
+.qr-row { display: flex; gap: 16px; justify-content: space-evenly; }
+.qr-mini {
+  background: none;
+  border: none;
+  box-shadow: none;
+  padding: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 8px;
-  box-shadow: 0 1px 2px var(--shadow);
-  transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease, background .3s ease;
 }
-.qr-mini:hover { transform: translateY(-3px); border-color: var(--rust-dim); box-shadow: 0 14px 34px var(--shadow-lg); }
 .qr-mini img {
   display: block;
-  width: 104px;
+  width: 96px;
   height: auto;              /* 保持原始比例，可扫 */
-  border-radius: 8px;
+  border-radius: 10px;
   border: 1px solid var(--line);
+  box-shadow: 0 2px 6px var(--shadow);
 }
-.qr-mini figcaption { font-size: 13px; color: var(--ink-2); letter-spacing: .02em; }
+.qr-mini figcaption { font-size: 12.5px; color: var(--ink-2); letter-spacing: .02em; }
+
+body.home .intro h1 { font-size: clamp(46px, 6vw, 66px); }
+body.home .role { margin-top: 10px; }
+body.home .tagline { margin-top: 14px; }
+body.home .status { margin-top: 12px; }
+body.home .social { margin-top: 20px; }
+
+.hero-actions {
+  margin-top: 26px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.pill {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--line);
+  color: var(--ink-2);
+  border-radius: 999px;
+  padding: 9px 20px;
+  font-size: 14px;
+  text-decoration: none;
+  transition: color .15s ease, border-color .15s ease;
+}
+.pill:hover { color: var(--rust); border-color: var(--rust-dim); }
 .mail-chip {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  align-self: center;
   border: 1px solid var(--rust-dim);
   color: var(--rust);
   border-radius: 999px;
-  padding: 12px 22px;
-  font-size: 15px;
+  padding: 9px 20px;
+  font-size: 14px;
   text-decoration: none;
   transition: background .15s ease, color .15s ease;
 }
-.mail-chip svg { width: 18px; height: 18px; }
+.mail-chip svg { width: 17px; height: 17px; }
 .mail-chip:hover { background: var(--rust); border-color: var(--rust); color: var(--surface); }
 
 /* ---------- 首屏 ---------- */
@@ -524,19 +544,18 @@ footer {
   main { padding: 0 20px; }
   footer { padding: 24px 20px 36px; margin-top: 72px; }
   body.home footer { margin-top: 0; padding: 10px 20px 16px; }
-  .hero { grid-template-columns: 1fr; gap: 30px; padding: 40px 0 8px; }
-  body.home .hero { grid-template-columns: 1fr; gap: 22px; padding: 16px 0 4px; }
-  .portrait { width: min(300px, 78%); }
-  body.home .portrait { width: min(185px, 52vw); justify-self: center; }
+  body.home main { padding: 16px 0; }
+  .hero-card { grid-template-columns: 1fr; gap: 20px; padding: 26px 20px 24px; border-radius: 22px; }
+  .hero-left { max-width: 300px; margin: 0 auto; width: 100%; gap: 18px; }
+  body.home .portrait { width: min(200px, 58vw); margin: 0 auto; }
   body.home .intro { text-align: center; }
-  body.home .intro h1 { font-size: 38px; }
-  body.home .tagline { margin: 10px auto 0; }
-  body.home .status { margin-top: 10px; }
-  body.home .social { margin-top: 14px; }
-  body.home .hero-links { margin-top: 10px; }
-  body.home .status, body.home .social, body.home .hero-links { justify-content: center; }
-  body.home .contact-strip { gap: 14px; padding: 4px 0 10px; }
-  .qr-mini img { width: 96px; }
+  body.home .intro h1 { font-size: 36px; }
+  body.home .tagline { margin: 8px auto 0; }
+  body.home .status { margin-top: 8px; }
+  body.home .social { margin-top: 12px; }
+  body.home .status, body.home .social { justify-content: center; }
+  .qr-mini img { width: 88px; }
+  .hero-actions { justify-content: center; padding-top: 14px; margin-top: 14px; }
   section { margin-top: 64px; }
   .page-head { padding: 40px 0 8px; }
 }

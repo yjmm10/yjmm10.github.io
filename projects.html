@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>项目 · Lucas 独立开发者</title>
-<meta name="description" content="独立开发者 Lucas 的项目列表：工具、网站，和一些还没名字的东西。">
-<meta property="og:title" content="项目 · Lucas 独立开发者">
-<meta property="og:description" content="独立开发者 Lucas 的项目列表：工具、网站，和一些还没名字的东西。">
+<title data-en="Projects · Lucas" data-zh="项目 · Lucas 独立开发者">Projects · Lucas</title>
+<meta name="description" content="Projects by Lucas, independent developer — tools, websites, and things not yet named.">
+<meta property="og:title" content="Projects · Lucas">
+<meta property="og:description" content="Projects by Lucas, independent developer — tools, websites, and things not yet named.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://yjmm10.github.io/projects.html">
-<meta property="og:site_name" content="Lucas 的个人主页">
+<meta property="og:site_name" content="Lucas">
 <meta property="og:image" content="https://yjmm10.github.io/assets/avatar.png">
 <meta name="twitter:card" content="summary">
 <meta name="theme-color" content="#E9EAEE" media="(prefers-color-scheme: light)">
@@ -19,6 +19,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600;900&display=swap" rel="stylesheet">
 <script>(function(){var t;try{t=localStorage.getItem("theme")}catch(e){}if(t!=="light"&&t!=="dark"){t=window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}document.documentElement.dataset.theme=t})();</script>
+<script>(function(){var l;try{l=localStorage.getItem("lang")}catch(e){}if(l!=="zh"&&l!=="en")l="en";document.documentElement.dataset.lang=l})();</script>
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
@@ -26,9 +27,9 @@
 <nav class="site-nav" aria-label="主导航">
   <span class="brand">Lucas</span>
   <div class="nav-links">
-    <a href="./">首页</a>
-    <a href="projects.html" aria-current="page">项目</a>
-    <a class="ext" href="https://github.com/yjmm10" target="_blank" rel="noopener">GitHub</a>
+    <a href="./"><span class="en">Home</span><span class="zh">首页</span></a>
+    <a href="projects.html" aria-current="page"><span class="en">Projects</span><span class="zh">项目</span></a>
+    <button class="lang-toggle" id="langToggle" type="button" aria-label="切换语言 / Switch language">中文</button>
     <button class="theme-toggle" id="themeToggle" type="button" aria-label="切换深浅色模式" title="切换深浅色">
       <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11Z"/></svg>
       <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/></svg>
@@ -38,8 +39,8 @@
 
 <main>
   <section class="page-head">
-    <h1>项目</h1>
-    <p class="sub">我在做的和做完的东西。每个项目都以「能用」为底线——先解决一个自己的麻烦，再看它是不是也是别人的。</p>
+    <h1><span class="en">Projects</span><span class="zh">项目</span></h1>
+    <p class="sub"><span class="en">Things I'm making and have made. Every project starts from a problem of my own — if it solves mine, maybe it solves yours too.</span><span class="zh">我在做的和做完的东西。每个项目都以「能用」为底线——先解决一个自己的麻烦，再看它是不是也是别人的。</span></p>
   </section>
 
   <!-- 项目列表：每上线一个，就往这里添一个。
@@ -52,45 +53,53 @@
   -->
   <div class="empty">
     <svg class="empty-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C12.9 6.9 17.1 11.1 24 12 17.1 12.9 12.9 17.1 12 24 11.1 17.1 6.9 12.9 0 12 6.9 11.1 11.1 6.9 12 0Z"/></svg>
-    <p class="empty-t">项目陆续上架中</p>
-    <p>做完一个，就往这里添一个。<br>在此之前，欢迎先到<a href="./">首页</a>认识一下我。</p>
+    <p class="empty-t"><span class="en">Projects are on their way</span><span class="zh">项目陆续上架中</span></p>
+    <p>
+      <span class="en">One done, one added here.<br>Until then, meet me on the <a href="./">home page</a>.</span>
+      <span class="zh">做完一个，就往这里添一个。<br>在此之前，欢迎先到<a href="./">首页</a>认识一下我。</span>
+    </p>
   </div>
 
   <!-- 关于我 -->
   <section class="about" id="about">
-    <h2>关于我</h2>
-    <p>我是 Lucas，90 后独立开发者。目前主要做文档方向、无人机轨迹规划、Web 开发，以及 AI Agent 应用与大模型的训练微调、部署。</p>
-    <p>喜欢关注很细微的东西，从中发现乐趣；也喜欢热闹、爱参加活动，因为总能学到很多。业余玩摄影，谈不上精通。对项目自我要求高，习惯反复打磨——是个坏习惯，但东西就是这么慢慢变好的。</p>
+    <h2><span class="en">About</span><span class="zh">关于我</span></h2>
+    <p><span class="en">I'm Lucas, an independent developer born in the 90s. I currently work on document AI, UAV trajectory optimization, web development, and AI Agent applications with LLM fine-tuning and deployment.</span><span class="zh">我是 Lucas，90 后独立开发者。目前主要做文档方向、无人机轨迹规划、Web 开发，以及 AI Agent 应用与大模型的训练微调、部署。</span></p>
+    <p><span class="en">I like paying attention to tiny details and finding joy in them. I enjoy lively places and events — there's always something to learn. I do photography as a hobby, far from mastery. I hold my projects to a high standard and polish them repeatedly — a bad habit, but it's how things slowly get good.</span><span class="zh">喜欢关注很细微的东西，从中发现乐趣；也喜欢热闹、爱参加活动，因为总能学到很多。业余玩摄影，谈不上精通。对项目自我要求高，习惯反复打磨——是个坏习惯，但东西就是这么慢慢变好的。</span></p>
     <p class="about-tags" aria-label="技术方向">
-      <span>文档</span><span>无人机轨迹规划</span><span>Web 开发</span><span>AI Agent</span><span>大模型微调与部署</span>
+      <span><span class="en">Document AI</span><span class="zh">智能文档处理</span></span>
+      <span><span class="en">GenAI Full-Stack</span><span class="zh">生成式 AI 全链开发</span></span>
+      <span><span class="en">UAV Trajectory Optimization</span><span class="zh">无人机轨迹优化</span></span>
     </p>
   </section>
 
   <!-- 我的一些认识 -->
   <section class="beliefs" id="beliefs">
-    <h2>我的一些认识</h2>
+    <h2><span class="en">Beliefs</span><span class="zh">我的一些认识</span></h2>
     <ol class="belief-list">
       <li>
-        <h3>小而完整，好过大而全</h3>
-        <p>把一件事做完，比铺一个大摊子重要。</p>
+        <h3><span class="en">Small and complete beats big and vague</span><span class="zh">小而完整，好过大而全</span></h3>
+        <p><span class="en">Finishing one thing matters more than sprawling.</span><span class="zh">把一件事做完，比铺一个大摊子重要。</span></p>
       </li>
       <li>
-        <h3>被真正用到，才算做完</h3>
-        <p>有一个人每天打开你做的东西，就是它存在的意义。</p>
+        <h3><span class="en">Done only when it's truly used</span><span class="zh">被真正用到，才算做完</span></h3>
+        <p><span class="en">If one person opens it every day, that's why it exists.</span><span class="zh">有一个人每天打开你做的东西，就是它存在的意义。</span></p>
       </li>
       <li>
-        <h3>反复打磨，是一种认真</h3>
-        <p>改完一版还想再改——坏习惯，也是标准。</p>
+        <h3><span class="en">Polishing repeatedly is a form of care</span><span class="zh">反复打磨，是一种认真</span></h3>
+        <p><span class="en">Wanting to revise yet again — a bad habit, and a standard.</span><span class="zh">改完一版还想再改——坏习惯，也是标准。</span></p>
       </li>
     </ol>
   </section>
 </main>
 
 <footer>
-  <span>© 2025 Lucas · 独立开发</span>
+  <span><span class="en">© <span class="y">2026</span> Lucas · Independent Developer</span><span class="zh">© <span class="y">2026</span> Lucas · 独立开发</span></span>
+  <a href="mailto:lucas4ai@outlook.com">lucas4ai@outlook.com</a>
 </footer>
 
 <script>(function(){var b=document.getElementById("themeToggle");if(!b)return;b.addEventListener("click",function(){var r=document.documentElement,n=r.dataset.theme==="dark"?"light":"dark";r.dataset.theme=n;try{localStorage.setItem("theme",n)}catch(e){}})})();</script>
+<script>(function(){var b=document.getElementById("langToggle");if(!b)return;function apply(l){document.documentElement.dataset.lang=l;document.documentElement.lang=l==="en"?"en":"zh-CN";var t=document.querySelector("title");if(t&&t.dataset&&t.dataset[l])document.title=t.dataset[l];b.textContent=l==="en"?"中文":"EN";try{localStorage.setItem("lang",l)}catch(e){}}b.addEventListener("click",function(){apply(document.documentElement.dataset.lang==="en"?"zh":"en")});apply(document.documentElement.dataset.lang||"en")})();</script>
+<script>(function(){var y=new Date().getFullYear();var n=document.querySelectorAll(".y");for(var i=0;i<n.length;i++)n[i].textContent=y})();</script>
 
 </body>
 </html>

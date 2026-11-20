@@ -17,11 +17,11 @@
 <link rel="icon" type="image/png" href="assets/avatar.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=JetBrains+Mono:ital,wght@0,800;1,800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Caveat:wght@600;700&family=JetBrains+Mono:ital,wght@0,800;1,800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.7.0/style.css">
 <script>(function(){var t;try{t=localStorage.getItem("theme")}catch(e){}if(t!=="light"&&t!=="dark"){t=window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}document.documentElement.dataset.theme=t})();</script>
 <script>(function(){var l;try{l=localStorage.getItem("lang")}catch(e){}if(l!=="zh"&&l!=="en")l="en";document.documentElement.dataset.lang=l})();</script>
-<link rel="stylesheet" href="assets/style.css?v=36">
+<link rel="stylesheet" href="assets/style.css?v=37">
 </head>
 <body>
 
@@ -30,7 +30,9 @@
   <div class="nav-links">
     <a href="./"><span class="en">Home</span><span class="zh">首页</span></a>
     <a href="projects.html" aria-current="page"><span class="en">Projects</span><span class="zh">项目</span></a>
-    <button class="lang-toggle" id="langToggle" type="button" aria-label="切换语言 / Switch language">中文</button>
+    <button class="lang-toggle" id="langToggle" type="button" aria-label="切换语言 / Switch language" title="切换语言 / Switch language">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.8 3.2 2.8 14.8 0 18M12 3c-2.8 3.2-2.8 14.8 0 18"/></svg>
+    </button>
     <button class="theme-toggle" id="themeToggle" type="button" aria-label="切换深浅色模式" title="切换深浅色">
       <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11Z"/></svg>
       <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/></svg>
@@ -74,7 +76,7 @@
 </footer>
 
 <script>(function(){var b=document.getElementById("themeToggle");if(!b)return;b.addEventListener("click",function(){var r=document.documentElement,n=r.dataset.theme==="dark"?"light":"dark";r.dataset.theme=n;try{localStorage.setItem("theme",n)}catch(e){}})})();</script>
-<script>(function(){var b=document.getElementById("langToggle");if(!b)return;function apply(l){document.documentElement.dataset.lang=l;document.documentElement.lang=l==="en"?"en":"zh-CN";var t=document.querySelector("title");if(t&&t.dataset&&t.dataset[l])document.title=t.dataset[l];b.textContent=l==="en"?"中文":"EN";try{localStorage.setItem("lang",l)}catch(e){}}b.addEventListener("click",function(){apply(document.documentElement.dataset.lang==="en"?"zh":"en")});apply(document.documentElement.dataset.lang||"en")})();</script>
+<script>(function(){var b=document.getElementById("langToggle");if(!b)return;function apply(l){document.documentElement.dataset.lang=l;document.documentElement.lang=l==="en"?"en":"zh-CN";var t=document.querySelector("title");if(t&&t.dataset&&t.dataset[l])document.title=t.dataset[l];b.title=l==="en"?"切换到中文 / To Chinese":"Switch to English / 切换到英文";b.setAttribute("aria-label",b.title);try{localStorage.setItem("lang",l)}catch(e){}}b.addEventListener("click",function(){apply(document.documentElement.dataset.lang==="en"?"zh":"en")});apply(document.documentElement.dataset.lang||"en")})();</script>
 <script>(function(){var b=document.getElementById("topBtn");if(!b)return;b.addEventListener("click",function(){window.scrollTo({top:0,behavior:"smooth"})})})();</script>
 <script>(function(){var y=new Date().getFullYear();var n=document.querySelectorAll(".y");for(var i=0;i<n.length;i++)n[i].textContent=y})();</script>
 

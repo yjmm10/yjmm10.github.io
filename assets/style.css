@@ -668,6 +668,24 @@ footer a {
   transition: background-size .3s ease, color .15s ease;
 }
 footer a:hover { color: var(--rust); background-size: 100% 1px; }
+footer .foot-right { display: inline-flex; align-items: center; gap: 14px; }
+footer .top-btn {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 4px 12px;
+  font-size: 12.5px;
+  font-family: inherit;
+  color: var(--ink-2);
+  background: var(--surface);
+  cursor: pointer;
+  transition: color .15s ease, border-color .15s ease;
+}
+footer .top-btn:hover { color: var(--rust); border-color: var(--rust-dim); }
+footer .top-btn svg { width: 13px; height: 13px; }
 
 /* ---------- 载入浮现（唯一的动效） ---------- */
 .reveal { opacity: 0; transform: translateY(14px); animation: rise .7s cubic-bezier(.2, .6, .2, 1) var(--d, 0s) forwards; }

@@ -376,7 +376,7 @@ svg.idea-svg.en .idea-text { font-size: 21px; }
 }
 .intro h2 { font-size: 17px; margin-bottom: 14px; }
 .intro h2::after { width: 26px; height: 2px; margin-top: 6px; }
-.wip { margin-top: 28px; }
+.wip { padding-top: 44px; }
 .thoughts { margin-top: 28px; }
 .wip-list { list-style: none; }
 .wip-list li { display: flex; align-items: center; gap: 10px; font-size: 15.5px; padding: 8px 0; }

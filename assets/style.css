@@ -179,81 +179,129 @@ body.home section { margin-top: 0; }
 body.home footer { margin-top: 0; padding: 14px 28px 22px; }
 
 .hero-card {
-  width: min(940px, 100%);
+  width: min(980px, 100%);
   background: var(--surface);
   border: 1px solid var(--card-line);
   border-radius: 28px;
-  padding: 44px 48px 40px;
+  padding: 40px 46px 36px;
   box-shadow: 0 24px 70px var(--shadow-lg), 0 2px 8px var(--shadow);
   display: grid;
-  grid-template-columns: 290px 1fr;
-  gap: 52px;
-  align-items: center;
+  grid-template-columns: 250px 1fr;
+  gap: 54px;
+  align-items: start;
 }
-.hero-left { display: flex; flex-direction: column; gap: 22px; }
-.hero-left .portrait { width: 100%; margin: 0; }
-.qr-row { display: flex; gap: 16px; justify-content: space-evenly; }
-.qr-mini {
-  background: none;
-  border: none;
-  box-shadow: none;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
+
+/* 左列：头像 + 基本介绍 */
+.me { display: flex; flex-direction: column; align-items: center; text-align: center; }
+.me .portrait { width: 176px; margin: 0 0 20px; }
+.me h1 {
+  font-family: var(--serif);
+  font-weight: 900;
+  font-size: 38px;
+  line-height: 1.15;
+  letter-spacing: .01em;
 }
-.qr-mini img {
+.me .role { margin-top: 6px; font-size: 17px; }
+.me .social { margin-top: 18px; justify-content: center; }
+.skill-label { margin-top: 24px; font-size: 12.5px; letter-spacing: .18em; color: var(--ink-2); }
+.me .about-tags { margin-top: 10px; justify-content: center; max-width: 270px; }
+.me .about-tags span { font-size: 12.5px; padding: 3px 12px; }
+
+/* 社交图标；微信/赞赏悬停浮现二维码 */
+.social { display: flex; gap: 12px; }
+.soc {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--ink-2);
+  cursor: pointer;
+  font: inherit;
+  transition: color .15s ease, border-color .15s ease, transform .15s ease, background .15s ease;
+}
+.soc:hover { color: var(--rust); border-color: var(--rust-dim); transform: translateY(-3px); background: var(--bg); }
+.soc svg { width: 19px; height: 19px; }
+.qr-pop { position: relative; display: inline-flex; }
+.pop {
+  position: absolute;
+  bottom: calc(100% + 14px);
+  left: 50%;
+  transform: translateX(-50%) translateY(6px) scale(.96);
+  z-index: 30;
+  width: 170px;               /* 绝对定位收缩宽度会塌陷，需显式给定 */
+  background: var(--surface);
+  border: 1px solid var(--card-line);
+  border-radius: 16px;
+  padding: 10px 10px 8px;
+  box-shadow: 0 18px 44px var(--shadow-lg);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .18s ease, transform .18s ease;
+}
+.pop img {
   display: block;
-  width: 96px;
+  width: 150px;
   height: auto;              /* 保持原始比例，可扫 */
   border-radius: 10px;
   border: 1px solid var(--line);
-  box-shadow: 0 2px 6px var(--shadow);
 }
-.qr-mini figcaption { font-size: 12.5px; color: var(--ink-2); letter-spacing: .02em; }
-
-body.home .intro h1 { font-size: clamp(46px, 6vw, 66px); }
-body.home .role { margin-top: 10px; }
-body.home .tagline { margin-top: 14px; }
-body.home .status { margin-top: 12px; }
-body.home .social { margin-top: 20px; }
-
-.hero-actions {
-  margin-top: 26px;
-  padding-top: 24px;
-  border-top: 1px solid var(--line);
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
+.pop figcaption { margin-top: 6px; font-size: 12px; color: var(--ink-2); text-align: center; letter-spacing: .02em; }
+.qr-pop:hover .pop,
+.qr-pop:focus-within .pop {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0) scale(1);
 }
-.pill {
-  display: inline-flex;
-  align-items: center;
-  border: 1px solid var(--line);
+
+/* 右列：想法 / 在搞的项目 / 个人想法 */
+.intro { padding-top: 4px; }
+.idea {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: clamp(19px, 2.4vw, 23px);
+  line-height: 1.6;
+}
+.intro h2 { font-size: 17px; margin-bottom: 14px; }
+.intro h2::after { width: 26px; height: 2px; margin-top: 6px; }
+.wip { margin-top: 28px; }
+.thoughts { margin-top: 28px; }
+.wip-list { list-style: none; }
+.wip-list li { display: flex; align-items: center; gap: 10px; font-size: 15.5px; padding: 8px 0; }
+.wip-list li + li { border-top: 1px dashed var(--line); }
+.dot {
+  flex: none;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--gold);
+  animation: breathe 2.6s ease-in-out infinite;
+}
+.wip-list em {
+  margin-left: auto;
+  font-style: normal;
+  font-size: 12px;
   color: var(--ink-2);
+  border: 1px solid var(--line);
   border-radius: 999px;
-  padding: 9px 20px;
-  font-size: 14px;
-  text-decoration: none;
-  transition: color .15s ease, border-color .15s ease;
+  padding: 1px 10px;
+  flex: none;
 }
-.pill:hover { color: var(--rust); border-color: var(--rust-dim); }
-.mail-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  border: 1px solid var(--rust-dim);
-  color: var(--rust);
-  border-radius: 999px;
-  padding: 9px 20px;
-  font-size: 14px;
-  text-decoration: none;
-  transition: background .15s ease, color .15s ease;
+.thought-list { list-style: none; }
+.thought-list li { position: relative; padding-left: 18px; color: var(--ink-2); font-size: 15px; }
+.thought-list li + li { margin-top: 8px; }
+.thought-list li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: .72em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--rust-dim);
 }
-.mail-chip svg { width: 17px; height: 17px; }
-.mail-chip:hover { background: var(--rust); border-color: var(--rust); color: var(--surface); }
 
 /* ---------- 首屏 ---------- */
 .hero {
@@ -545,17 +593,9 @@ footer {
   footer { padding: 24px 20px 36px; margin-top: 72px; }
   body.home footer { margin-top: 0; padding: 10px 20px 16px; }
   body.home main { padding: 16px 0; }
-  .hero-card { grid-template-columns: 1fr; gap: 20px; padding: 26px 20px 24px; border-radius: 22px; }
-  .hero-left { max-width: 300px; margin: 0 auto; width: 100%; gap: 18px; }
-  body.home .portrait { width: min(200px, 58vw); margin: 0 auto; }
-  body.home .intro { text-align: center; }
-  body.home .intro h1 { font-size: 36px; }
-  body.home .tagline { margin: 8px auto 0; }
-  body.home .status { margin-top: 8px; }
-  body.home .social { margin-top: 12px; }
-  body.home .status, body.home .social { justify-content: center; }
-  .qr-mini img { width: 88px; }
-  .hero-actions { justify-content: center; padding-top: 14px; margin-top: 14px; }
+  .hero-card { grid-template-columns: 1fr; gap: 26px; padding: 28px 22px 24px; border-radius: 22px; }
+  .me .portrait { width: min(180px, 52vw); }
+  .pop img { width: 132px; }
   section { margin-top: 64px; }
   .page-head { padding: 40px 0 8px; }
 }

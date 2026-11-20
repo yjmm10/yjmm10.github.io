@@ -210,29 +210,25 @@ body.home section { margin-top: 0; }
 /* 左列：头像 + 基本介绍 */
 .me { display: flex; flex-direction: column; align-items: center; text-align: center; }
 .me .portrait { width: 176px; margin: 0 0 20px; }
-.me h1 {
+/* SVG 动态艺术字：渐变流动 + 逐字入场 + 金色光标 */
+.lucas-svg { display: block; width: 216px; max-width: 72vw; height: auto; overflow: visible; }
+.lucas-text {
   font-family: var(--serif);
   font-weight: 800;
-  font-size: 47px;
-  line-height: 1.12;
-  letter-spacing: .015em;
-  color: var(--ink);
+  font-size: 74px;
+  letter-spacing: .01em;
+  fill: url(#lucasGrad);
 }
-@supports ((-webkit-background-clip: text) or (background-clip: text)) {
-  .me h1 {
-    background: linear-gradient(118deg, var(--ink) 30%, var(--rust) 62%, var(--gold) 92%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
-}
-/* 极客感：名字后面一颗呼吸的金色光标 */
-.me h1::after {
-  content: "_";
-  margin-left: 4px;
-  color: var(--gold);
-  animation: blink 1.2s steps(1) infinite;
-}
+.lucas-svg .gs0 { stop-color: var(--ink); }
+.lucas-svg .gs1 { stop-color: var(--rust); }
+.lucas-svg .gs2 { stop-color: var(--gold); }
+.lucas-svg tspan.lg { opacity: 0; animation: lucasIn .55s cubic-bezier(.2,.6,.2,1) forwards; }
+.lucas-svg tspan.d2 { animation-delay: .07s; }
+.lucas-svg tspan.d3 { animation-delay: .14s; }
+.lucas-svg tspan.d4 { animation-delay: .21s; }
+.lucas-svg tspan.d5 { animation-delay: .28s; }
+.lucas-svg .lucas-cursor { fill: var(--gold); animation: blink 1.2s steps(1) infinite; }
+@keyframes lucasIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes blink { 50% { opacity: 0; } }
 .me .role { margin-top: 6px; font-size: 17px; }
 .skill-label { margin-top: 24px; font-size: 12.5px; letter-spacing: .18em; color: var(--ink-2); }
@@ -697,7 +693,7 @@ footer .top-btn svg { width: 13px; height: 13px; }
 @media (prefers-reduced-motion: reduce) {
   .reveal { animation: none; opacity: 1; transform: none; }
   .sparkle, .status-dot { animation: none; }
-  .me h1::after { animation: none; }
+  .lucas-svg tspan { animation: none; opacity: 1; }
   .card, .hero-links a, footer a, .nav-links a { transition: none; }
   body { transition: none; }
 }

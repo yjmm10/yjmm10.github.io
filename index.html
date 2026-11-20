@@ -22,7 +22,7 @@
 <link rel="preload" as="image" href="assets/avatar.webp" fetchpriority="high">
 <script>(function(){var t;try{t=localStorage.getItem("theme")}catch(e){}if(t!=="light"&&t!=="dark"){t=window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}document.documentElement.dataset.theme=t})();</script>
 <script>(function(){var l;try{l=localStorage.getItem("lang")}catch(e){}if(l!=="zh"&&l!=="en")l="en";document.documentElement.dataset.lang=l})();</script>
-<link rel="stylesheet" href="assets/style.css?v=12">
+<link rel="stylesheet" href="assets/style.css?v=14">
 </head>
 <body class="home">
 
@@ -81,16 +81,7 @@
               <button class="skill" type="button"><span class="en">Document AI</span><span class="zh">智能文档处理</span></button>
               <div class="tip">
                 <div class="tip-tags">
-                  <span><span class="en">Layout analysis</span><span class="zh">版面分析</span></span>
-                  <span><span class="en">Table parsing</span><span class="zh">表格解析</span></span>
-                  <span><span class="en">Formula parsing</span><span class="zh">公式解析</span></span>
-                  <span><span class="en">Text recognition</span><span class="zh">文字识别</span></span>
-                  <span><span class="en">Seal detection</span><span class="zh">印章识别</span></span>
-                  <span><span class="en">Invoice parsing</span><span class="zh">发票解析</span></span>
-                  <span><span class="en">Info extraction</span><span class="zh">信息抽取</span></span>
-                  <span><span class="en">Doc understanding</span><span class="zh">文档理解</span></span>
-                  <span><span class="en">Doc structuring</span><span class="zh">文档结构化</span></span>
-                  <span><span class="en">Document RAG</span><span class="zh">文档 RAG</span></span>
+                  <span><span class="en">Layout analysis</span><span class="zh">版面分析</span></span> · <span><span class="en">Table parsing</span><span class="zh">表格解析</span></span> · <span><span class="en">Formula parsing</span><span class="zh">公式解析</span></span> · <span><span class="en">Text recognition</span><span class="zh">文字识别</span></span> · <span><span class="en">Seal detection</span><span class="zh">印章识别</span></span> · <span><span class="en">Invoice parsing</span><span class="zh">发票解析</span></span> · <span><span class="en">Info extraction</span><span class="zh">信息抽取</span></span> · <span><span class="en">Doc understanding</span><span class="zh">文档理解</span></span> · <span><span class="en">Doc structuring</span><span class="zh">文档结构化</span></span> · <span><span class="en">Document RAG</span><span class="zh">文档 RAG</span></span>
                 </div>
               </div>
             </div>
@@ -98,10 +89,7 @@
               <button class="skill" type="button"><span class="en">GenAI Full-Stack</span><span class="zh">生成式 AI 全链开发</span></button>
               <div class="tip">
                 <div class="tip-tags">
-                  <span><span class="en">Prompt engineering</span><span class="zh">提示词工程</span></span>
-                  <span><span class="en">Model training</span><span class="zh">模型训练</span></span>
-                  <span><span class="en">Inference &amp; deployment</span><span class="zh">推理部署</span></span>
-                  <span><span class="en">Agent development</span><span class="zh">Agent 开发</span></span>
+                  <span><span class="en">Prompt engineering</span><span class="zh">提示词工程</span></span> · <span><span class="en">Model training</span><span class="zh">模型训练</span></span> · <span><span class="en">Inference &amp; deployment</span><span class="zh">推理部署</span></span> · <span><span class="en">Agent development</span><span class="zh">Agent 开发</span></span>
                 </div>
               </div>
             </div>
@@ -109,11 +97,7 @@
               <button class="skill" type="button"><span class="en">UAV Trajectory Optimization</span><span class="zh">无人机轨迹优化</span></button>
               <div class="tip">
                 <div class="tip-tags">
-                  <span><span class="en">Task offloading</span><span class="zh">任务卸载</span></span>
-                  <span><span class="en">Resource allocation</span><span class="zh">资源优化</span></span>
-                  <span><span class="en">Multi-UAV coordination</span><span class="zh">多机协同</span></span>
-                  <span><span class="en">Reinforcement learning</span><span class="zh">强化学习</span></span>
-                  <span><span class="en">Multi-objective optimization</span><span class="zh">多目标优化</span></span>
+                  <span><span class="en">Task offloading</span><span class="zh">任务卸载</span></span> · <span><span class="en">Resource allocation</span><span class="zh">资源优化</span></span> · <span><span class="en">Multi-UAV coordination</span><span class="zh">多机协同</span></span> · <span><span class="en">Reinforcement learning</span><span class="zh">强化学习</span></span> · <span><span class="en">Multi-objective optimization</span><span class="zh">多目标优化</span></span>
                 </div>
               </div>
             </div>
@@ -151,6 +135,7 @@
 <script>(function(){var b=document.getElementById("themeToggle");if(!b)return;b.addEventListener("click",function(){var r=document.documentElement,n=r.dataset.theme==="dark"?"light":"dark";r.dataset.theme=n;try{localStorage.setItem("theme",n)}catch(e){}})})();</script>
 <script>(function(){var b=document.getElementById("langToggle");if(!b)return;function apply(l){document.documentElement.dataset.lang=l;document.documentElement.lang=l==="en"?"en":"zh-CN";var t=document.querySelector("title");if(t&&t.dataset&&t.dataset[l])document.title=t.dataset[l];b.title=l==="en"?"切换到中文 / To Chinese":"Switch to English / 切换到英文";b.setAttribute("aria-label",b.title);try{localStorage.setItem("lang",l)}catch(e){}}b.addEventListener("click",function(){apply(document.documentElement.dataset.lang==="en"?"zh":"en")});apply(document.documentElement.dataset.lang||"en")})();</script>
 <script>(function(){var y=new Date().getFullYear();var n=document.querySelectorAll(".y");for(var i=0;i<n.length;i++)n[i].textContent=y})();</script>
+<script>(function(){var f=document.querySelector(".portrait");if(!f)return;var pic=f.querySelector("picture");if(!pic)return;var src=pic.querySelector("source"),img=pic.querySelector("img");if(!src||!img)return;var on=false,A={w:"assets/avatar-alt.webp",p:"assets/avatar-alt.png"},B={w:"assets/avatar.webp",p:"assets/avatar.png"};function toggle(){on=!on;var s=on?A:B;src.srcset=s.w;img.src=s.p;}f.setAttribute("role","button");f.setAttribute("tabindex","0");f.setAttribute("aria-label","切换头像 / Switch avatar");f.addEventListener("click",toggle);f.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();toggle();}});})();</script>
 
 </body>
 </html>

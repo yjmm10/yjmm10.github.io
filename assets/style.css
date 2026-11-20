@@ -312,6 +312,13 @@ body.home section { margin-top: 0; }
   transition: color .15s ease, border-color .15s ease, transform .15s ease, background .15s ease;
 }
 .soc:hover { color: var(--rust); border-color: var(--rust-dim); transform: translateY(-3px); background: var(--bg); }
+/* 社交图标各自上色：GitHub 墨色 / 邮箱锈红 / 微信绿 / 咖啡金 */
+.soc.soc-github, .soc.soc-github:hover { color: var(--ink); }
+.soc.soc-mail, .soc.soc-mail:hover { color: var(--rust); }
+.soc.soc-wechat, .soc.soc-wechat:hover { color: #2f9e63; }
+.soc.soc-coffee, .soc.soc-coffee:hover { color: #c9862d; }
+[data-theme="dark"] .soc.soc-wechat { color: #45c17e; }
+[data-theme="dark"] .soc.soc-coffee { color: #e2a645; }
 .soc svg { width: 19px; height: 19px; }
 .qr-pop { position: relative; display: inline-flex; }
 .pop {
@@ -324,7 +331,7 @@ body.home section { margin-top: 0; }
   background: var(--surface);
   border: 1px solid var(--card-line);
   border-radius: 16px;
-  padding: 10px 10px 8px;
+  padding: 10px;              /* 四周等距，上下留白一致 */
   box-shadow: 0 18px 44px var(--shadow-lg);
   opacity: 0;
   pointer-events: none;
@@ -729,7 +736,7 @@ footer .top-btn svg { width: 13px; height: 13px; }
   body.home main { padding: 12px 0; }
   .hero-card { grid-template-columns: 1fr; gap: 26px; padding: 28px 22px 24px; border-radius: 22px; }
   .me .portrait { width: min(160px, 52vw); }
-  .pop img { width: 132px; }
+  .pop img { width: 132px; height: 132px; }
   section { margin-top: 64px; }
   .page-head { padding: 40px 0 8px; }
   .tip {

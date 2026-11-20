@@ -20,6 +20,7 @@
   --glow-2: rgba(177, 78, 47, .09);
   --glow-3: rgba(201, 150, 64, .05);
   --serif: "Noto Serif SC", "Songti SC", "STSong", "SimSun", serif;
+  --mono: "JetBrains Mono", ui-monospace, "Cascadia Code", "SF Mono", Consolas, monospace;
 }
 
 /* 深色变量：默认跟随系统；点按主题按钮后由 data-theme 覆盖 */
@@ -125,7 +126,7 @@ a:focus-visible { outline: 2px solid var(--rust); outline-offset: 3px; border-ra
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--card-line);
 }
-.brand { font-family: var(--serif); font-weight: 900; font-size: 18px; letter-spacing: .02em; }
+.brand { font-family: var(--mono); font-weight: 800; font-size: 17px; letter-spacing: .02em; }
 .nav-links { display: flex; gap: 26px; align-items: baseline; }
 .nav-links a {
   font-size: 15px;
@@ -146,7 +147,8 @@ a:focus-visible { outline: 2px solid var(--rust); outline-offset: 3px; border-ra
 .nav-links a.ext { text-decoration: underline; text-decoration-color: rgba(122,114,102,.5); background-image: none; }
 
 /* 主题切换按钮 */
-.theme-toggle {
+.theme-toggle,
+.lang-toggle {
   display: grid;
   place-items: center;
   align-self: center;
@@ -159,8 +161,10 @@ a:focus-visible { outline: 2px solid var(--rust); outline-offset: 3px; border-ra
   cursor: pointer;
   transition: color .15s ease, background .15s ease;
 }
-.theme-toggle:hover { color: var(--rust); background: var(--card-line); }
-.theme-toggle svg { width: 18px; height: 18px; }
+.theme-toggle:hover,
+.lang-toggle:hover { color: var(--rust); background: var(--card-line); }
+.theme-toggle svg,
+.lang-toggle svg { width: 18px; height: 18px; }
 .theme-toggle .icon-sun { display: none; }
 :root[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
 :root[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
@@ -169,20 +173,7 @@ a:focus-visible { outline: 2px solid var(--rust); outline-offset: 3px; border-ra
   :root:not([data-theme="light"]) .theme-toggle .icon-moon { display: none; }
 }
 
-/* 语言切换按钮 + 双语显示（默认英文） */
-.lang-toggle {
-  align-self: center;
-  border: 1px solid var(--line);
-  background: transparent;
-  color: var(--ink-2);
-  border-radius: 999px;
-  padding: 5px 12px;
-  font-size: 13px;
-  font-family: inherit;
-  cursor: pointer;
-  transition: color .15s ease, border-color .15s ease;
-}
-.lang-toggle:hover { color: var(--rust); border-color: var(--rust-dim); }
+/* 双语显示（默认英文）；语言切换为图标按钮，样式同 .theme-toggle */
 [data-lang="en"] .zh { display: none !important; }
 [data-lang="zh"] .en { display: none !important; }
 
@@ -220,16 +211,23 @@ body.home section { margin-top: 0; }
 .me { display: flex; flex-direction: column; align-items: center; text-align: center; }
 .me .portrait { width: 176px; margin: 0 0 20px; }
 .me h1 {
-  font-family: var(--serif);
-  font-weight: 900;
-  font-size: 38px;
+  font-family: var(--mono);
+  font-weight: 800;
+  font-style: italic;
+  font-size: 40px;
   line-height: 1.15;
   letter-spacing: .01em;
 }
+/* 极客感：名字后面一颗呼吸的金色光标 */
+.me h1::after {
+  content: "_";
+  margin-left: 4px;
+  color: var(--gold);
+  animation: blink 1.2s steps(1) infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
 .me .role { margin-top: 6px; font-size: 17px; }
-.me .social { margin-top: 18px; justify-content: center; }
-.skill-label { margin-top: 24px; font-size: 12.5px; letter-spacing: .18em; color: var(--ink-2); }
-.skills { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; max-width: 280px; }
+.skills { margin-top: 2px; display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-start; }
 .skill {
   font-family: inherit;
   font-size: 12px;
@@ -242,7 +240,7 @@ body.home section { margin-top: 0; }
   transition: color .15s ease, border-color .15s ease;
 }
 .skill:hover { color: var(--rust); border-color: var(--rust-dim); }
-.soc:focus-visible, .skill:focus-visible { outline: 2px solid var(--rust); outline-offset: 2px; }
+.skill:focus-visible { outline: 2px solid var(--rust); outline-offset: 2px; }
 .skill-pop { position: relative; display: inline-flex; }
 .tip {
   position: absolute;
@@ -250,7 +248,8 @@ body.home section { margin-top: 0; }
   left: 50%;
   transform: translateX(-50%) translateY(6px) scale(.96);
   z-index: 30;
-  width: 200px;
+  width: 380px;               /* 足够宽，标签像标签墙一样多颗一行 */
+  max-width: calc(100vw - 64px);
   background: var(--surface);
   border: 1px solid var(--card-line);
   border-radius: 14px;
@@ -269,14 +268,14 @@ body.home section { margin-top: 0; }
   letter-spacing: .03em;
   margin-bottom: 8px;
 }
-.tip-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tip-tags { display: flex; flex-wrap: wrap; gap: 5px; }
 .tip-tags span {
-  font-size: 11.5px;
+  font-size: 10.5px;
   color: var(--ink-2);
   background: var(--bg);
   border: 1px solid var(--line);
   border-radius: 999px;
-  padding: 2px 9px;
+  padding: 1.5px 7px;
 }
 .skill-pop:hover .tip,
 .skill-pop:focus-within .tip {
@@ -285,23 +284,35 @@ body.home section { margin-top: 0; }
   transform: translateX(-50%) translateY(0) scale(1);
 }
 
-/* 社交图标；微信/赞赏悬停浮现二维码 */
-.social { display: flex; gap: 12px; }
-.soc {
-  display: grid;
-  place-items: center;
-  width: 40px;
-  height: 40px;
+/* ---------- 联系方式（左下角）：GitHub / 微信 / 邮箱 ---------- */
+.contact { margin-top: 20px; display: flex; flex-direction: column; gap: 8px; align-items: center; }
+.contact-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   border: 1px solid var(--line);
-  border-radius: 12px;
-  background: var(--surface);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 13px;
   color: var(--ink-2);
+  background: var(--surface);
+  text-decoration: none;
   cursor: pointer;
-  font: inherit;
-  transition: color .15s ease, border-color .15s ease, transform .15s ease, background .15s ease;
+  transition: color .15s ease, border-color .15s ease;
 }
-.soc:hover { color: var(--rust); border-color: var(--rust-dim); transform: translateY(-3px); background: var(--bg); }
-.soc svg { width: 19px; height: 19px; }
+.contact-item:hover { color: var(--rust); border-color: var(--rust-dim); }
+.contact-item svg { width: 15px; height: 15px; flex: none; }
+.contact-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  background: none;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  padding: 0;
+}
 .qr-pop { position: relative; display: inline-flex; }
 .pop {
   position: absolute;
@@ -346,6 +357,7 @@ body.home section { margin-top: 0; }
 .intro h2::after { width: 26px; height: 2px; margin-top: 6px; }
 .wip { margin-top: 28px; }
 .thoughts { margin-top: 28px; }
+.expertise { margin-top: 28px; }
 .wip-list { list-style: none; }
 .wip-list li { display: flex; align-items: center; gap: 10px; font-size: 15.5px; padding: 8px 0; }
 .wip-list li + li { border-top: 1px dashed var(--line); }
@@ -468,22 +480,6 @@ body.home section { margin-top: 0; }
   transition: background-size .3s ease;
 }
 .hero-links a:hover, footer a:hover { background-size: 100% 1px; }
-
-/* ---------- 社交图标 ---------- */
-.social { margin-top: 20px; display: flex; gap: 12px; }
-.social a {
-  display: grid;
-  place-items: center;
-  width: 40px;
-  height: 40px;
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  background: var(--surface);
-  color: var(--ink-2);
-  transition: color .15s ease, border-color .15s ease, transform .15s ease;
-}
-.social a:hover { color: var(--rust); border-color: var(--rust-dim); transform: translateY(-2px); }
-.social svg { width: 19px; height: 19px; }
 
 /* ---------- 分节 ---------- */
 section { margin-top: 88px; }
@@ -679,6 +675,7 @@ footer a:hover { color: var(--rust); background-size: 100% 1px; }
 @media (prefers-reduced-motion: reduce) {
   .reveal { animation: none; opacity: 1; transform: none; }
   .sparkle, .status-dot { animation: none; }
+  .me h1::after { animation: none; }
   .card, .hero-links a, footer a, .nav-links a { transition: none; }
   body { transition: none; }
 }
@@ -694,4 +691,6 @@ footer a:hover { color: var(--rust); background-size: 100% 1px; }
   .pop img { width: 132px; }
   section { margin-top: 64px; }
   .page-head { padding: 40px 0 8px; }
+  .tip { left: 0; transform: translateY(6px) scale(.96); }
+  .skill-pop:hover .tip, .skill-pop:focus-within .tip { transform: translateY(0) scale(1); }
 }

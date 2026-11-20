@@ -231,7 +231,7 @@ body.home section { margin-top: 0; }
 @keyframes lucasIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes blink { 50% { opacity: 0; } }
 .me .role { margin-top: 6px; font-size: 17px; }
-.skill-label { margin-top: 24px; font-size: 12.5px; letter-spacing: .18em; color: var(--ink-2); }
+.skill-label { margin-top: 24px; font-size: 12.5px; font-weight: 700; letter-spacing: .18em; color: var(--ink-2); }
 .skills { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; max-width: 280px; }
 .skill {
   appearance: none;

@@ -69,7 +69,7 @@ body {
   font-family: "Bricolage Grotesque", "LXGW WenKai Screen", "LXGW WenKai", "PingFang SC", "Microsoft YaHei", "Segoe UI", sans-serif;
   font-size: 17px;
   line-height: 1.85;
-  padding: 72px 0 64px;   /* 给固定顶栏/底栏留位 */
+  padding: 58px 0 64px;   /* 给固定顶栏/底栏留位 */
   transition: background .3s ease, color .3s ease;
 }
 
@@ -116,7 +116,7 @@ a:focus-visible { outline: 2px solid var(--rust); outline-offset: 3px; border-ra
   left: 0;
   right: 0;
   z-index: 40;
-  padding: 15px max(28px, calc((100% - 1000px) / 2 + 28px));
+  padding: 8px max(28px, calc((100% - 1000px) / 2 + 28px));
   display: flex;
   justify-content: space-between;
   align-items: baseline;
@@ -224,8 +224,8 @@ body.home section { margin-top: 0; }
 .gs2 { stop-color: var(--gold); }
 /* 理念句：SVG 渐变流动 + 逐字浮现 */
 .idea-svg { display: block; width: 100%; max-width: 540px; height: auto; overflow: visible; }
-.idea-text { font-family: var(--serif); font-weight: 600; font-size: 30px; letter-spacing: .02em; }
-svg.idea-svg.en .idea-text { font-size: 21px; }
+.idea-text { font-family: var(--serif); font-weight: 600; font-size: 24px; letter-spacing: .02em; }
+svg.idea-svg.en .idea-text { font-size: 17px; }
 .idea-svg .type-cursor { fill: var(--gold); font-size: .68em; animation: cursorPulse 1.6s ease-in-out infinite; }
 @keyframes cursorPulse { 0%, 100% { opacity: 1; } 50% { opacity: .15; } }
 .lucas-svg tspan.lg { opacity: 0; animation: lucasIn .55s cubic-bezier(.2,.6,.2,1) forwards; }
@@ -737,7 +737,7 @@ footer .top-btn svg { width: 13px; height: 13px; }
 
 /* ---------- 移动端 ---------- */
 @media (max-width: 760px) {
-  .site-nav { padding: 12px 20px; }
+  .site-nav { padding: 8px 20px; }
   main { padding: 0 20px; }
   footer { padding: 9px 20px; }
   body.home main { padding: 12px 0; }

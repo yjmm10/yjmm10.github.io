@@ -4,6 +4,7 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
+  color-scheme: light;
   --bg: #EDE9E1;            /* 暖瓷灰，比头像冷底更暖一档 */
   --surface: #FAF8F3;
   --ink: #2B2620;           /* 暖墨 */
@@ -13,20 +14,49 @@
   --rust: #B14E2F;          /* 毛衣的砖红 */
   --rust-dim: rgba(177, 78, 47, .5);
   --gold: #C99640;          /* 头像里的星光，压深一档适配浅底 */
+  --shadow: rgba(43, 38, 32, .07);
+  --shadow-lg: rgba(43, 38, 32, .13);
+  --glow-1: rgba(201, 150, 64, .12);
+  --glow-2: rgba(177, 78, 47, .09);
+  --glow-3: rgba(201, 150, 64, .05);
   --serif: "Noto Serif SC", "Songti SC", "STSong", "SimSun", serif;
 }
 
+/* 深色变量：默认跟随系统；点按主题按钮后由 data-theme 覆盖 */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #191512;            /* 暖咖啡黑 */
+  --surface: #221E19;
+  --ink: #EDE6DA;           /* 暖奶油 */
+  --ink-2: #A79E90;
+  --line: rgba(237, 230, 218, .13);
+  --card-line: rgba(237, 230, 218, .1);
+  --rust: #D97B4F;
+  --rust-dim: rgba(217, 123, 79, .55);
+  --gold: #E3B25E;
+  --shadow: rgba(0, 0, 0, .3);
+  --shadow-lg: rgba(0, 0, 0, .5);
+  --glow-1: rgba(227, 178, 94, .08);
+  --glow-2: rgba(217, 123, 79, .08);
+  --glow-3: rgba(227, 178, 94, .04);
+}
 @media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #191512;          /* 暖咖啡黑 */
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #191512;
     --surface: #221E19;
-    --ink: #EDE6DA;         /* 暖奶油 */
+    --ink: #EDE6DA;
     --ink-2: #A79E90;
     --line: rgba(237, 230, 218, .13);
     --card-line: rgba(237, 230, 218, .1);
     --rust: #D97B4F;
     --rust-dim: rgba(217, 123, 79, .55);
     --gold: #E3B25E;
+    --shadow: rgba(0, 0, 0, .3);
+    --shadow-lg: rgba(0, 0, 0, .5);
+    --glow-1: rgba(227, 178, 94, .08);
+    --glow-2: rgba(217, 123, 79, .08);
+    --glow-3: rgba(227, 178, 94, .04);
   }
 }
 
@@ -54,9 +84,9 @@ body::before {
   z-index: -1;
   pointer-events: none;
   background:
-    radial-gradient(640px 420px at 14% 6%, rgba(201, 150, 64, .12), transparent 70%),
-    radial-gradient(760px 520px at 86% 94%, rgba(177, 78, 47, .09), transparent 70%),
-    radial-gradient(500px 360px at 78% 18%, rgba(201, 150, 64, .05), transparent 70%);
+    radial-gradient(640px 420px at 14% 6%, var(--glow-1), transparent 70%),
+    radial-gradient(760px 520px at 86% 94%, var(--glow-2), transparent 70%),
+    radial-gradient(500px 360px at 78% 18%, var(--glow-3), transparent 70%);
 }
 body::after {
   content: "";
@@ -66,14 +96,6 @@ body::after {
   pointer-events: none;
   opacity: .04;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-@media (prefers-color-scheme: dark) {
-  body::before {
-    background:
-      radial-gradient(640px 420px at 14% 6%, rgba(227, 178, 94, .08), transparent 70%),
-      radial-gradient(760px 520px at 86% 94%, rgba(217, 123, 79, .08), transparent 70%),
-      radial-gradient(500px 360px at 78% 18%, rgba(227, 178, 94, .04), transparent 70%);
-  }
 }
 
 a {
@@ -101,13 +123,41 @@ a:focus-visible { outline: 2px solid var(--rust); outline-offset: 3px; border-ra
   color: var(--ink-2);
   text-decoration: none;
   padding: 6px 2px 4px;   /* 加大触控热区 */
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-position: left calc(100% - 3px);
+  background-repeat: no-repeat;
+  transition: background-size .25s ease, color .15s ease;
 }
-.nav-links a:hover { color: var(--ink); }
+.nav-links a:hover { color: var(--ink); background-size: 100% 1px; }
 .nav-links a[aria-current="page"] {
   color: var(--ink);
   border-bottom: 2px solid var(--rust);
 }
-.nav-links a.ext { text-decoration: underline; text-decoration-color: rgba(122,114,102,.5); }
+.nav-links a.ext { text-decoration: underline; text-decoration-color: rgba(122,114,102,.5); background-image: none; }
+
+/* 主题切换按钮 */
+.theme-toggle {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--ink-2);
+  cursor: pointer;
+  transition: color .15s ease, background .15s ease;
+}
+.theme-toggle:hover { color: var(--rust); background: var(--card-line); }
+.theme-toggle svg { width: 18px; height: 18px; }
+.theme-toggle .icon-sun { display: none; }
+:root[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+:root[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme-toggle .icon-sun { display: block; }
+  :root:not([data-theme="light"]) .theme-toggle .icon-moon { display: none; }
+}
 
 main { max-width: 1000px; margin: 0 auto; padding: 0 28px; }
 
@@ -139,9 +189,14 @@ main { max-width: 1000px; margin: 0 auto; padding: 0 28px; }
   border-radius: 999px 999px 30px 30px;
   pointer-events: none;
 }
-.sparkle { position: absolute; fill: var(--gold); z-index: 2; }
-.sparkle-1 { width: 26px; right: -18px; bottom: 30px; }
-.sparkle-2 { width: 15px; left: -14px; bottom: 110px; opacity: .85; }
+.sparkle { position: absolute; fill: var(--gold); z-index: 2; animation: twinkle 3.4s ease-in-out infinite; }
+.sparkle-1 { width: 26px; right: -18px; bottom: 30px; animation-delay: .2s; }
+.sparkle-2 { width: 15px; left: -14px; bottom: 110px; opacity: .85; animation-delay: 1.5s; }
+.sparkle-3 { width: 17px; right: 22px; top: 26px; opacity: .9; animation-delay: 2.6s; }
+@keyframes twinkle {
+  0%, 100% { transform: scale(1) rotate(0deg); opacity: 1; }
+  50%      { transform: scale(.78) rotate(18deg); opacity: .35; }
+}
 
 .intro h1 {
   font-family: var(--serif);
@@ -159,8 +214,40 @@ main { max-width: 1000px; margin: 0 auto; padding: 0 28px; }
   letter-spacing: .14em;
 }
 .tagline { margin-top: 18px; color: var(--ink-2); max-width: 26em; }
+
+/* 最近动态：一颗慢慢呼吸的金点 */
+.status {
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--ink-2);
+  font-size: 14.5px;
+}
+.status-dot {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--gold);
+  animation: breathe 2.6s ease-in-out infinite;
+}
+@keyframes breathe {
+  0%, 100% { box-shadow: 0 0 0 0 var(--glow-1); opacity: 1; }
+  50%      { box-shadow: 0 0 0 6px transparent; opacity: .55; }
+}
+
 .hero-links { margin-top: 20px; display: flex; gap: 20px; flex-wrap: wrap; font-size: 14.5px; }
-.hero-links a { padding: 6px 0; }   /* 加大触控热区 */
+.hero-links a, footer a {
+  padding: 6px 0 2px;   /* 加大触控热区 */
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-position: left bottom;
+  background-repeat: no-repeat;
+  transition: background-size .3s ease;
+}
+.hero-links a:hover, footer a:hover { background-size: 100% 1px; }
 
 /* ---------- 社交图标 ---------- */
 .social { margin-top: 20px; display: flex; gap: 12px; }
@@ -235,10 +322,16 @@ h2::after {                        /* 标题后一道短金线，呼应星光 */
   border: 1px solid var(--card-line);
   border-radius: 18px;
   padding: 30px 26px 24px;
-  box-shadow: 0 1px 2px rgba(43, 38, 32, .07);
+  box-shadow: 0 1px 2px var(--shadow);
   display: flex;
   flex-direction: column;
   align-items: center;
+  transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease, background .3s ease;
+}
+.card:hover {
+  transform: translateY(-3px);
+  border-color: var(--rust-dim);
+  box-shadow: 0 14px 34px var(--shadow-lg);
 }
 .card .qr {
   display: block;
@@ -313,9 +406,19 @@ h2::after {                        /* 标题后一道短金线，呼应星光 */
   max-width: 660px;
   border: 1px dashed rgba(122, 114, 102, .45);
   border-radius: 14px;
-  padding: 26px 28px;
+  padding: 44px 28px;
   color: var(--ink-2);
   font-size: 15.5px;
+  text-align: center;
+}
+.empty-ic { width: 30px; height: 30px; fill: var(--gold); }
+.empty-t {
+  font-family: var(--serif);
+  font-weight: 900;
+  font-size: 18px;
+  letter-spacing: .04em;
+  color: var(--ink);
+  margin: 12px 0 6px;
 }
 
 footer {
@@ -336,6 +439,8 @@ footer {
 @keyframes rise { to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) {
   .reveal { animation: none; opacity: 1; transform: none; }
+  .sparkle, .status-dot { animation: none; }
+  .card, .hero-links a, footer a, .nav-links a { transition: none; }
   body { transition: none; }
 }
 

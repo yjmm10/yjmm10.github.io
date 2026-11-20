@@ -211,12 +211,20 @@ body.home section { margin-top: 0; }
 .me { display: flex; flex-direction: column; align-items: center; text-align: center; }
 .me .portrait { width: 176px; margin: 0 0 20px; }
 .me h1 {
-  font-family: var(--mono);
+  font-family: var(--serif);
   font-weight: 800;
-  font-style: italic;
-  font-size: 40px;
-  line-height: 1.15;
-  letter-spacing: .01em;
+  font-size: 47px;
+  line-height: 1.12;
+  letter-spacing: .015em;
+  color: var(--ink);
+}
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+  .me h1 {
+    background: linear-gradient(118deg, var(--ink) 30%, var(--rust) 62%, var(--gold) 92%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
 }
 /* 极客感：名字后面一颗呼吸的金色光标 */
 .me h1::after {
@@ -271,21 +279,21 @@ body.home section { margin-top: 0; }
   transition: opacity .18s ease, transform .18s ease;
 }
 .tip-tags { margin-top: 8px; font-size: 12px; line-height: 2.15; color: var(--ink-2); }
-.tip-tags span {
+.tip-tags > span {
   display: inline-block;
   padding: 1px 8px;
   border-radius: 6px;
   white-space: nowrap;
 }
-.tip-tags span:nth-child(8n+1) { color: #b0543c; background: color-mix(in srgb, #b0543c 10%, transparent); }
-.tip-tags span:nth-child(8n+2) { color: #a97e22; background: color-mix(in srgb, #a97e22 10%, transparent); }
-.tip-tags span:nth-child(8n+3) { color: #2f8a68; background: color-mix(in srgb, #2f8a68 10%, transparent); }
-.tip-tags span:nth-child(8n+4) { color: #4a6fa5; background: color-mix(in srgb, #4a6fa5 10%, transparent); }
-.tip-tags span:nth-child(8n+5) { color: #8a63a8; background: color-mix(in srgb, #8a63a8 10%, transparent); }
-.tip-tags span:nth-child(8n+6) { color: #b0557e; background: color-mix(in srgb, #b0557e 10%, transparent); }
-.tip-tags span:nth-child(8n+7) { color: #2e8b8b; background: color-mix(in srgb, #2e8b8b 10%, transparent); }
-.tip-tags span:nth-child(8n+8) { color: #7a8a3c; background: color-mix(in srgb, #7a8a3c 10%, transparent); }
-[data-theme="dark"] .tip-tags span { filter: brightness(1.3); }
+.tip-tags > span:nth-child(8n+1) { color: #b0543c; background: color-mix(in srgb, #b0543c 10%, transparent); }
+.tip-tags > span:nth-child(8n+2) { color: #a97e22; background: color-mix(in srgb, #a97e22 10%, transparent); }
+.tip-tags > span:nth-child(8n+3) { color: #2f8a68; background: color-mix(in srgb, #2f8a68 10%, transparent); }
+.tip-tags > span:nth-child(8n+4) { color: #4a6fa5; background: color-mix(in srgb, #4a6fa5 10%, transparent); }
+.tip-tags > span:nth-child(8n+5) { color: #8a63a8; background: color-mix(in srgb, #8a63a8 10%, transparent); }
+.tip-tags > span:nth-child(8n+6) { color: #b0557e; background: color-mix(in srgb, #b0557e 10%, transparent); }
+.tip-tags > span:nth-child(8n+7) { color: #2e8b8b; background: color-mix(in srgb, #2e8b8b 10%, transparent); }
+.tip-tags > span:nth-child(8n+8) { color: #7a8a3c; background: color-mix(in srgb, #7a8a3c 10%, transparent); }
+[data-theme="dark"] .tip-tags > span { filter: brightness(1.3); }
 .skill-pop:hover .tip,
 .skill-pop:focus-within .tip {
   opacity: 1;
@@ -704,6 +712,16 @@ footer .top-btn svg { width: 13px; height: 13px; }
   .pop img { width: 132px; }
   section { margin-top: 64px; }
   .page-head { padding: 40px 0 8px; }
-  .tip { left: 0; transform: translateY(6px) scale(.96); }
-  .skill-pop:hover .tip, .skill-pop:focus-within .tip { transform: translateY(0) scale(1); }
+  .tip {
+    position: fixed;
+    left: 50%;
+    right: auto;
+    top: auto;
+    bottom: 84px;
+    transform: translateX(-50%) translateY(6px) scale(.96);
+    width: min(380px, calc(100vw - 28px));
+    max-width: calc(100vw - 28px);
+    z-index: 60;
+  }
+  .skill-pop:hover .tip, .skill-pop:focus-within .tip { transform: translateX(-50%) translateY(0) scale(1); }
 }

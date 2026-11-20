@@ -219,9 +219,14 @@ body.home section { margin-top: 0; }
   letter-spacing: .01em;
   fill: url(#lucasGrad);
 }
-.lucas-svg .gs0 { stop-color: var(--ink); }
-.lucas-svg .gs1 { stop-color: var(--rust); }
-.lucas-svg .gs2 { stop-color: var(--gold); }
+.gs0 { stop-color: var(--ink); }
+.gs1 { stop-color: var(--rust); }
+.gs2 { stop-color: var(--gold); }
+/* 理念句：SVG 渐变流动 + 逐字浮现 */
+.idea-svg { display: block; width: 100%; max-width: 540px; height: auto; overflow: visible; }
+.idea-text { font-family: var(--serif); font-weight: 600; font-size: 30px; letter-spacing: .02em; }
+svg.idea-svg.en .idea-text { font-size: 21px; }
+.idea-svg tspan.lg { opacity: 0; animation: lucasIn .5s cubic-bezier(.2,.6,.2,1) forwards; animation-delay: var(--d, 0s); }
 .lucas-svg tspan.lg { opacity: 0; animation: lucasIn .55s cubic-bezier(.2,.6,.2,1) forwards; }
 .lucas-svg tspan.d2 { animation-delay: .07s; }
 .lucas-svg tspan.d3 { animation-delay: .14s; }
@@ -724,6 +729,7 @@ footer .top-btn svg { width: 13px; height: 13px; }
   .o2 { transform: rotate(195deg); }
   .o3 { transform: rotate(310deg); }
   .lucas-svg tspan { animation: none; opacity: 1; }
+  .idea-svg tspan { animation: none; opacity: 1; }
   .card, .hero-links a, footer a, .nav-links a { transition: none; }
   body { transition: none; }
 }

@@ -226,7 +226,8 @@ body.home section { margin-top: 0; }
 .idea-svg { display: block; width: 100%; max-width: 540px; height: auto; overflow: visible; }
 .idea-text { font-family: var(--serif); font-weight: 600; font-size: 30px; letter-spacing: .02em; }
 svg.idea-svg.en .idea-text { font-size: 21px; }
-.idea-svg .type-cursor { fill: var(--gold); animation: blink 1.1s steps(1) infinite; }
+.idea-svg .type-cursor { fill: var(--gold); font-size: .68em; animation: cursorPulse 1.6s ease-in-out infinite; }
+@keyframes cursorPulse { 0%, 100% { opacity: 1; } 50% { opacity: .15; } }
 .lucas-svg tspan.lg { opacity: 0; animation: lucasIn .55s cubic-bezier(.2,.6,.2,1) forwards; }
 .lucas-svg tspan.d2 { animation-delay: .07s; }
 .lucas-svg tspan.d3 { animation-delay: .14s; }

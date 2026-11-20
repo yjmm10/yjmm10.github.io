@@ -214,9 +214,9 @@ body.home section { margin-top: 0; }
 /* SVG 动态艺术字：渐变流动 + 逐字入场 + 金色光标 */
 .lucas-svg { display: block; width: 216px; max-width: 72vw; height: auto; overflow: visible; }
 .lucas-text {
-  font-family: var(--serif);
-  font-weight: 800;
-  font-size: 74px;
+  font-family: 'Caveat', var(--serif);
+  font-weight: 700;
+  font-size: 88px;
   letter-spacing: .01em;
   fill: url(#lucasGrad);
 }

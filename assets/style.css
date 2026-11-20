@@ -126,7 +126,8 @@ a:focus-visible { outline: 2px solid var(--rust); outline-offset: 3px; border-ra
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--card-line);
 }
-.brand { font-family: var(--mono); font-weight: 800; font-size: 17px; letter-spacing: .02em; }
+.brand { display: inline-flex; align-items: center; gap: 8px; font-family: 'Caveat', var(--serif); font-weight: 700; font-size: 23px; letter-spacing: .01em; line-height: 1; }
+.brand img { width: 26px; height: 26px; border-radius: 50%; object-fit: cover; border: 1px solid var(--card-line); }
 .nav-links { display: flex; gap: 26px; align-items: baseline; }
 .nav-links a {
   font-size: 15px;

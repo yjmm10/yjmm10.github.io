@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lucas 个人信息组件 · 嵌入示例</title>
+  <style>
+    body { margin: 0; padding: 48px 24px; font-family: -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; background: #f4efe6; }
+    .wrap { max-width: 720px; margin: 0 auto; }
+    h1 { font-size: 22px; margin: 0 0 8px; }
+    p { color: #6f675c; font-size: 14px; line-height: 1.7; margin: 0 0 28px; }
+    h2 { font-size: 15px; margin: 32px 0 12px; color: #2b2620; }
+    code { background: #e9e2d4; padding: 2px 6px; border-radius: 6px; font-size: 12.5px; }
+    .dark { background: #1c1814; border-radius: 18px; padding: 24px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Lucas 个人信息组件 · 嵌入示例</h1>
+    <p>下面两张卡片的数据全部来自 <code>https://yjmm10.github.io/profile.json</code>。
+       其他项目只需嵌入 <code>&lt;script src="https://yjmm10.github.io/embed.js"&gt;&lt;/script&gt;</code>，
+       个人信息更新后所有引用处自动同步，无需逐个修改。</p>
+
+    <h2>浅色 · 跟随浏览器语言</h2>
+    <div data-lucas-profile></div>
+
+    <h2>深色 · 强制中文</h2>
+    <div class="dark">
+      <div data-lucas-profile></div>
+    </div>
+  </div>
+
+  <script src="embed.js" data-theme="light"></script>
+  <script src="embed.js" data-lang="zh" data-theme="dark"></script>
+</body>
+</html>

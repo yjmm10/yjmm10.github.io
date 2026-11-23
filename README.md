@@ -46,3 +46,46 @@ python -m http.server 4173 --bind 127.0.0.1 --directory .
 # 访问 http://127.0.0.1:4173/
 ```
 
+
+---
+
+## 个人信息单一数据源（供其他项目引用）
+
+个人资料统一维护在 [`profile.json`](https://yjmm10.github.io/profile.json)，其他项目引用后，信息更新只需改这一处。
+
+### 方式一：直接读取 JSON
+
+```js
+fetch("https://yjmm10.github.io/profile.json")
+  .then(r => r.json())
+  .then(profile => console.log(profile.name, profile.role.zh));
+```
+
+GitHub Pages 对静态资源默认返回 `Access-Control-Allow-Origin: *`，可跨域 fetch。
+
+### 方式二：一键嵌入名片组件
+
+在任意网页中：
+
+```html
+<div data-lucas-profile></div>
+<script src="https://yjmm10.github.io/embed.js"></script>
+```
+
+可选参数（写在 script 标签上）：
+
+- `data-target="#选择器"`：渲染容器
+- `data-lang="en|zh|auto"`：语言，默认跟随浏览器
+- `data-theme="light|dark|auto"`：配色，默认跟随系统
+
+本地预览：`http://127.0.0.1:4173/embed-demo.html`（线上：`https://yjmm10.github.io/embed-demo.html`）。
+
+### 字段说明
+
+| 字段 | 说明 |
+| --- | --- |
+| `name` / `handle` | 名字与 GitHub 用户名 |
+| `role` / `slogan` / `expertise` | 中英双语（`{en, zh}`） |
+| `avatar` | 头像绝对地址 |
+| `links` | GitHub / 邮箱 / 微信二维码 |
+| `updated` | 最后更新日期，改完记得同步 |

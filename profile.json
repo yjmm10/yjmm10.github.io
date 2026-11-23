@@ -1,0 +1,26 @@
+{
+  "$schema": "https://yjmm10.github.io/profile.schema.json",
+  "name": "Lucas",
+  "handle": "yjmm10",
+  "role": {
+    "en": "Independent Developer",
+    "zh": "独立开发者"
+  },
+  "avatar": "https://yjmm10.github.io/assets/avatar.webp",
+  "website": "https://yjmm10.github.io/",
+  "slogan": {
+    "en": "Technology is an extension of thought, not the end in itself.",
+    "zh": "技术是思考的延伸，而不是目的本身"
+  },
+  "expertise": [
+    { "en": "Document AI", "zh": "智能文档处理" },
+    { "en": "GenAI Full-Stack", "zh": "生成式 AI 全链开发" },
+    { "en": "UAV Trajectory Optimization", "zh": "无人机轨迹优化" }
+  ],
+  "links": {
+    "github": "https://github.com/yjmm10",
+    "email": "lucas4ai@outlook.com",
+    "wechat_qr": "https://yjmm10.github.io/assets/wechat-qr.png"
+  },
+  "updated": "2026-11-20"
+}

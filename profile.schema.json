@@ -35,23 +35,6 @@
         }
       }
     },
-    "projects": {
-      "type": "array",
-      "description": "在搞的项目",
-      "items": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "object",
-            "properties": { "en": { "type": "string" }, "zh": { "type": "string" } }
-          },
-          "status": {
-            "type": "object",
-            "properties": { "en": { "type": "string" }, "zh": { "type": "string" } }
-          }
-        }
-      }
-    },
     "thoughts": {
       "type": "array",
       "description": "个人想法",

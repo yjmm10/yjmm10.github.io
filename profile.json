@@ -53,24 +53,6 @@
       ]
     }
   ],
-  "projects": [
-    {
-      "name": { "en": "DocVLM · multimodal document intelligence", "zh": "DocVLM · 多模态文档智能解析" },
-      "status": { "en": "In progress", "zh": "进行中" }
-    },
-    {
-      "name": { "en": "fj-starmap · AI startup-policy tracking & insights", "zh": "fj-starmap · AI 创业政策追踪与洞察" },
-      "status": { "en": "Tinkering", "zh": "折腾中" }
-    },
-    {
-      "name": { "en": "Glean · automated cross-platform distribution", "zh": "Glean · 跨平台内容全自动分发系统" },
-      "status": { "en": "Polishing", "zh": "打磨中" }
-    },
-    {
-      "name": { "en": "Academic Skill · research productivity toolkit", "zh": "学术 Skill · 科研效率工具集" },
-      "status": { "en": "Brewing", "zh": "构思中" }
-    }
-  ],
   "thoughts": [
     { "en": "Small and complete beats big and vague.", "zh": "小而完整，好过大而全。" },
     { "en": "Done means someone actually uses it.", "zh": "被真正用到，才算做完。" },

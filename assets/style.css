@@ -762,3 +762,33 @@ footer .top-btn svg { width: 13px; height: 13px; }
   }
   .skill-pop:hover .tip, .skill-pop:focus-within .tip { transform: translateX(-50%) translateY(0) scale(1); }
 }
+
+/* ===== 项目卡片（数据源：projects.json，status 枚举对应固定样式） ===== */
+.project-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 18px; margin-top: 30px; }
+.project-card {
+  display: flex; flex-direction: column; gap: 10px;
+  padding: 22px 24px 20px;
+  background: var(--surface); border: 1px solid var(--card-line); border-radius: 16px;
+  box-shadow: var(--shadow);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.project-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+.pc-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.pc-name { margin: 0; font-size: 17px; font-weight: 800; color: var(--ink); }
+.pc-status {
+  flex: none; font-size: 11px; font-weight: 600; letter-spacing: .02em;
+  padding: 3px 10px; border-radius: 999px; border: 1px solid transparent; white-space: nowrap;
+}
+.st-in-progress { color: #b0543c; border-color: color-mix(in srgb, #b0543c 45%, transparent); background: color-mix(in srgb, #b0543c 10%, transparent); }
+.st-tinkering   { color: #a07d1f; border-color: color-mix(in srgb, #a07d1f 45%, transparent); background: color-mix(in srgb, #a07d1f 12%, transparent); }
+.st-polishing   { color: #4a6fa5; border-color: color-mix(in srgb, #4a6fa5 45%, transparent); background: color-mix(in srgb, #4a6fa5 10%, transparent); }
+.st-brewing     { color: #6f675c; border-color: color-mix(in srgb, #6f675c 45%, transparent); background: color-mix(in srgb, #6f675c 10%, transparent); }
+.st-released    { color: #2f8a68; border-color: color-mix(in srgb, #2f8a68 45%, transparent); background: color-mix(in srgb, #2f8a68 10%, transparent); }
+.st-archived    { color: #8a8578; border-color: color-mix(in srgb, #8a8578 40%, transparent); background: color-mix(in srgb, #8a8578 8%, transparent); }
+[data-theme="dark"] .pc-status { filter: brightness(1.3); }
+.pc-tagline { margin: 0; font-size: 13.5px; line-height: 1.65; color: var(--ink-2); }
+.pc-stack { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 2px; }
+.pc-stack span { font-size: 11px; padding: 2px 9px; border-radius: 999px; border: 1px solid var(--line); color: var(--ink-2); line-height: 18px; }
+.pc-links { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 4px; font-size: 12.5px; }
+.pc-links a { color: var(--rust); font-weight: 600; text-decoration: none; }
+.pc-links a:hover { text-decoration: underline; }

@@ -57,8 +57,10 @@ python -m http.server 4173 --bind 127.0.0.1 --directory .
 
 | 端点 | 说明 |
 | --- | --- |
-| `GET https://yjmm10.github.io/profile.json` | 个人信息完整数据（JSON） |
-| `GET https://yjmm10.github.io/profile.schema.json` | 数据结构定义（JSON Schema，可用于校验/生成类型） |
+| `GET https://yjmm10.github.io/profile.json` | **个人信息**（身份/理念/技能/想法/联系方式） |
+| `GET https://yjmm10.github.io/projects.json` | **项目数据**（卡片字段齐全，可直接渲染卡片） |
+| `GET https://yjmm10.github.io/profile.schema.json` | 个人信息结构定义（JSON Schema） |
+| `GET https://yjmm10.github.io/projects.schema.json` | 项目数据结构定义（status 为固定枚举，对应固定样式） |
 
 - 返回 `Content-Type: application/json; charset=utf-8`
 - 已开启跨域：`Access-Control-Allow-Origin: *`，任何网站均可直接 fetch
@@ -92,8 +94,19 @@ profile = requests.get("https://yjmm10.github.io/profile.json", timeout=10).json
 | `slogan` | `{en, zh}` | 一句话理念 |
 | `expertise` | `[{en, zh}]` | 擅长领域（大类） |
 | `skills` | `[{category, items}]` | 分方向的详细技能标签 |
-| `projects` | `[{name, status}]` | 在搞的项目与状态 |
 | `thoughts` | `[{en, zh}]` | 个人想法 |
+
+**projects.json 字段**（每条项目即一张卡片的完整数据）：
+
+| 字段 | 类型 | 说明 |
+| --- | --- | --- |
+| `id` | string | 项目唯一标识 |
+| `name` / `tagline` | `{en, zh}` | 项目名 / 一句话简介（卡片标题/副标题） |
+| `description` | `{en, zh}` | 详细描述（可选） |
+| `status` | enum | `in-progress` 进行中 / `tinkering` 折腾中 / `polishing` 打磨中 / `brewing` 构思中 / `released` 已上线 / `archived` 已归档。**枚举即样式**：砖红 / 金 / 蓝 / 灰 / 绿 / 浅灰 |
+| `stack` | `[{en, zh}]` | 技术/关键词标签行（可选） |
+| `links` | object | `homepage` / `github` / `docs`（可选，有才渲染链接行） |
+| `featured` | boolean | 首页「在搞的项目」只展示 featured 项目 |
 | `links` | object | `github` / `email` / `wechat_qr` |
 | `updated` | `YYYY-MM-DD` | 数据最后更新日期 |
 
@@ -109,10 +122,22 @@ profile = requests.get("https://yjmm10.github.io/profile.json", timeout=10).json
 ```
 
 可选参数（写在 script 标签上）：`data-target="#选择器"`、`data-lang="en|zh|auto"`、`data-theme="light|dark|auto"`。
-示例：`https://yjmm10.github.io/embed-demo.html`。
+
+**项目卡片组件**（数据来自 `projects.json`）：
+
+```html
+<div data-lucas-projects></div>
+<script src="https://yjmm10.github.io/embed-projects.js" data-count="3"></script>
+```
+
+额外支持 `data-count` 控制显示条数。示例：`https://yjmm10.github.io/embed-demo.html`。
+
+### 本站自身的渲染约定
+
+本站首页与项目页同样从这两份 JSON 渲染（`index.html` 渲染擅长领域/个人想法/在搞的项目与理念句，`projects.html` 渲染项目卡片网格）；页面内的静态 HTML 仅作为无 JS 环境的回退。**改内容 = 改 JSON，页面自动更新。**
 
 ### 维护约定
 
-1. 修改个人信息时，只改本仓库的 `profile.json`（以及主页 `index.html`）。
-2. 同步更新 `profile.json` 里的 `updated` 字段。
-3. `embed.js` 内置的数据快照用于同步首绘；若结构或内容变化，记得一并更新其 `SNAPSHOT`。
+1. 个人信息改 `profile.json`，项目改 `projects.json` —— 只改 JSON，页面自动更新。
+2. 改完同步更新对应 JSON 里的 `updated` 字段。
+3. 若内容与 `embed.js` / `embed-projects.js` 内置快照（`SNAPSHOT`）不一致，一并更新快照以保持首绘一致。

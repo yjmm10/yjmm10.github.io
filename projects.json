@@ -1,0 +1,56 @@
+{
+  "$schema": "https://yjmm10.github.io/projects.schema.json",
+  "version": 1,
+  "updated": "2026-11-20",
+  "projects": [
+    {
+      "id": "docvlm",
+      "name": { "en": "DocVLM", "zh": "DocVLM" },
+      "tagline": { "en": "Multimodal document intelligence", "zh": "多模态文档智能解析" },
+      "status": "in-progress",
+      "stack": [
+        { "en": "Document AI", "zh": "文档智能" },
+        { "en": "VLM", "zh": "视觉语言模型" },
+        { "en": "RAG", "zh": "检索增强" }
+      ],
+      "links": {},
+      "featured": true
+    },
+    {
+      "id": "fj-starmap",
+      "name": { "en": "fj-starmap", "zh": "fj-starmap" },
+      "tagline": { "en": "AI startup-policy tracking & insights", "zh": "AI 创业政策追踪与洞察" },
+      "status": "tinkering",
+      "stack": [
+        { "en": "LLM insights", "zh": "LLM 洞察" },
+        { "en": "Data aggregation", "zh": "数据聚合" }
+      ],
+      "links": {},
+      "featured": true
+    },
+    {
+      "id": "glean",
+      "name": { "en": "Glean", "zh": "Glean" },
+      "tagline": { "en": "Automated cross-platform distribution", "zh": "跨平台内容全自动分发" },
+      "status": "polishing",
+      "stack": [
+        { "en": "Automation", "zh": "自动化" },
+        { "en": "Platform APIs", "zh": "平台 API" }
+      ],
+      "links": {},
+      "featured": true
+    },
+    {
+      "id": "academic-skill",
+      "name": { "en": "Academic Skill", "zh": "学术 Skill" },
+      "tagline": { "en": "Research productivity toolkit", "zh": "科研效率工具集" },
+      "status": "brewing",
+      "stack": [
+        { "en": "Paper reading", "zh": "论文精读" },
+        { "en": "Writing pipeline", "zh": "写作流水线" }
+      ],
+      "links": {},
+      "featured": true
+    }
+  ]
+}

@@ -49,43 +49,70 @@ python -m http.server 4173 --bind 127.0.0.1 --directory .
 
 ---
 
-## 个人信息单一数据源（供其他项目引用）
+## 个人信息开放数据接口（供其他项目引用）
 
-个人资料统一维护在 [`profile.json`](https://yjmm10.github.io/profile.json)，其他项目引用后，信息更新只需改这一处。
+个人资料统一维护在 **`https://yjmm10.github.io/profile.json`**，作为唯一数据源（Single Source of Truth）。其他项目、网站、小程序引用这份数据自行设计样式；信息变更只需修改主页仓库这一处，所有引用方自动同步。
 
-### 方式一：直接读取 JSON
+### 接口地址
 
-```js
-fetch("https://yjmm10.github.io/profile.json")
-  .then(r => r.json())
-  .then(profile => console.log(profile.name, profile.role.zh));
+| 端点 | 说明 |
+| --- | --- |
+| `GET https://yjmm10.github.io/profile.json` | 个人信息完整数据（JSON） |
+| `GET https://yjmm10.github.io/profile.schema.json` | 数据结构定义（JSON Schema，可用于校验/生成类型） |
+
+- 返回 `Content-Type: application/json; charset=utf-8`
+- 已开启跨域：`Access-Control-Allow-Origin: *`，任何网站均可直接 fetch
+- GitHub Pages CDN 缓存约 10 分钟，数据更新后最多延迟几分钟生效
+- 建议引用方做本地缓存/降级处理，勿高频请求
+
+### 快速调用
+
+```bash
+curl https://yjmm10.github.io/profile.json
 ```
 
-GitHub Pages 对静态资源默认返回 `Access-Control-Allow-Origin: *`，可跨域 fetch。
+```js
+const profile = await fetch("https://yjmm10.github.io/profile.json").then(r => r.json());
+console.log(profile.name, profile.role.zh, profile.links.github);
+```
 
-### 方式二：一键嵌入名片组件
+```python
+import requests
+profile = requests.get("https://yjmm10.github.io/profile.json", timeout=10).json()
+```
 
-在任意网页中：
+### 字段说明
+
+| 字段 | 类型 | 说明 |
+| --- | --- | --- |
+| `name` / `handle` | string | 名字 / GitHub 用户名 |
+| `role` | `{en, zh}` | 身份（中英双语） |
+| `avatar` | uri | 头像图片绝对地址 |
+| `website` | uri | 个人主页 |
+| `slogan` | `{en, zh}` | 一句话理念 |
+| `expertise` | `[{en, zh}]` | 擅长领域（大类） |
+| `skills` | `[{category, items}]` | 分方向的详细技能标签 |
+| `projects` | `[{name, status}]` | 在搞的项目与状态 |
+| `thoughts` | `[{en, zh}]` | 个人想法 |
+| `links` | object | `github` / `email` / `wechat_qr` |
+| `updated` | `YYYY-MM-DD` | 数据最后更新日期 |
+
+所有文案字段均为 `{en, zh}` 双语对象，引用方按需取用（如 `profile.role.zh`）。
+
+### 免样式嵌入组件（可选）
+
+如果不想自己写样式，也可以直接嵌入现成的名片组件（内部同样读取 `profile.json`）：
 
 ```html
 <div data-lucas-profile></div>
 <script src="https://yjmm10.github.io/embed.js"></script>
 ```
 
-可选参数（写在 script 标签上）：
+可选参数（写在 script 标签上）：`data-target="#选择器"`、`data-lang="en|zh|auto"`、`data-theme="light|dark|auto"`。
+示例：`https://yjmm10.github.io/embed-demo.html`。
 
-- `data-target="#选择器"`：渲染容器
-- `data-lang="en|zh|auto"`：语言，默认跟随浏览器
-- `data-theme="light|dark|auto"`：配色，默认跟随系统
+### 维护约定
 
-本地预览：`http://127.0.0.1:4173/embed-demo.html`（线上：`https://yjmm10.github.io/embed-demo.html`）。
-
-### 字段说明
-
-| 字段 | 说明 |
-| --- | --- |
-| `name` / `handle` | 名字与 GitHub 用户名 |
-| `role` / `slogan` / `expertise` | 中英双语（`{en, zh}`） |
-| `avatar` | 头像绝对地址 |
-| `links` | GitHub / 邮箱 / 微信二维码 |
-| `updated` | 最后更新日期，改完记得同步 |
+1. 修改个人信息时，只改本仓库的 `profile.json`（以及主页 `index.html`）。
+2. 同步更新 `profile.json` 里的 `updated` 字段。
+3. `embed.js` 内置的数据快照用于同步首绘；若结构或内容变化，记得一并更新其 `SNAPSHOT`。

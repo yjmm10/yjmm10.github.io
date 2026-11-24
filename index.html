@@ -22,7 +22,7 @@
 <link rel="preload" as="image" href="assets/avatar.webp" fetchpriority="high">
 <script>(function(){var t;try{t=localStorage.getItem("theme")}catch(e){}if(t!=="light"&&t!=="dark"){t=window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}document.documentElement.dataset.theme=t})();</script>
 <script>(function(){var l;try{l=localStorage.getItem("lang")}catch(e){}if(l!=="zh"&&l!=="en")l="en";document.documentElement.dataset.lang=l})();</script>
-<link rel="stylesheet" href="assets/style.css?v=40">
+<link rel="stylesheet" href="assets/style.css?v=41">
 </head>
 <body class="home">
 
@@ -112,18 +112,18 @@
         <section class="wip reveal" style="--d:.28s" aria-label="在搞的项目">
           <h2><span class="en">Works in progress</span><span class="zh">在搞的项目</span></h2>
           <ul class="wip-list">
-            <li><i class="dot" aria-hidden="true"></i><span><span class="en">DocVLM · multimodal document intelligence</span><span class="zh">DocVLM · 多模态文档智能解析</span></span><em><span class="en">In progress</span><span class="zh">进行中</span></em></li>
-            <li><i class="dot" aria-hidden="true"></i><span><span class="en">fj-starmap · AI startup-policy tracking &amp; insights</span><span class="zh">fj-starmap · AI 创业政策追踪与洞察</span></span><em><span class="en">Tinkering</span><span class="zh">折腾中</span></em></li>
-            <li><i class="dot" aria-hidden="true"></i><span><span class="en">Glean · automated cross-platform distribution</span><span class="zh">Glean · 跨平台内容全自动分发</span></span><em><span class="en">Polishing</span><span class="zh">打磨中</span></em></li>
-            <li><i class="dot" aria-hidden="true"></i><span><span class="en">Academic Skill · research productivity toolkit</span><span class="zh">学术 Skill · 科研效率工具集</span></span><em><span class="en">Brewing</span><span class="zh">构思中</span></em></li>
+            <li><i class="dot" aria-hidden="true"></i><span><span class="en">DocVLM · multimodal document intelligence</span><span class="zh">DocVLM · 多模态文档智能解析</span></span><em class="st-in-progress"><span class="en">In progress</span><span class="zh">进行中</span></em></li>
+            <li><i class="dot" aria-hidden="true"></i><span><span class="en">fj-starmap · AI startup-policy tracking &amp; insights</span><span class="zh">fj-starmap · AI 创业政策追踪与洞察</span></span><em class="st-tinkering"><span class="en">Tinkering</span><span class="zh">折腾中</span></em></li>
+            <li><i class="dot" aria-hidden="true"></i><span><span class="en">Glean · automated cross-platform distribution</span><span class="zh">Glean · 跨平台内容全自动分发</span></span><em class="st-polishing"><span class="en">Polishing</span><span class="zh">打磨中</span></em></li>
+            <li><i class="dot" aria-hidden="true"></i><span><span class="en">Academic Skill · research productivity toolkit</span><span class="zh">学术 Skill · 科研效率工具集</span></span><em class="st-brewing"><span class="en">Brewing</span><span class="zh">构思中</span></em></li>
           </ul>
         </section>
         <section class="thoughts reveal" style="--d:.38s" aria-label="个人想法">
           <h2><span class="en">Thoughts</span><span class="zh">个人想法</span></h2>
           <ul class="thought-list">
-            <li><span class="en">Small and complete beats big and vague.</span><span class="zh">小而完整，好过大而全。</span></li>
-            <li><span class="en">Done means someone actually uses it.</span><span class="zh">被真正用到，才算做完。</span></li>
-            <li><span class="en">Polishing again and again is a form of care.</span><span class="zh">反复打磨，是一种认真。</span></li>
+            <li><span class="en"><strong class="hl">Small and complete</strong> beats big and vague.</span><span class="zh"><strong class="hl">小而完整</strong>，好过大而全。</span></li>
+            <li><span class="en">Done means someone <strong class="hl">actually uses it</strong>.</span><span class="zh">被真正用到，<strong class="hl">才算做完</strong>。</span></li>
+            <li><span class="en"><strong class="hl">Polishing again and again</strong> is a form of care.</span><span class="zh"><strong class="hl">反复打磨</strong>，是一种认真。</span></li>
           </ul>
         </section>
       </div>
@@ -147,6 +147,8 @@
      页面内静态内容仅作为无 JS/加载失败的回退。 */
   function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
   function bi(o){o=o||{};return '<span class="en">'+esc(o.en)+'</span><span class="zh">'+esc(o.zh)+"</span>"}
+  function hl(s){return esc(s).replace(/\*\*(.+?)\*\*/g,'<strong class="hl">$1</strong>')}
+  function bih(o){o=o||{};return '<span class="en">'+hl(o.en)+'</span><span class="zh">'+hl(o.zh)+"</span>"}
   var STATUS={"in-progress":{en:"In progress",zh:"进行中"},"tinkering":{en:"Tinkering",zh:"折腾中"},"polishing":{en:"Polishing",zh:"打磨中"},"brewing":{en:"Brewing",zh:"构思中"},"released":{en:"Released",zh:"已上线"},"archived":{en:"Archived",zh:"已归档"}};
   window.__lucasStatus=STATUS;
   fetch("profile.json",{credentials:"omit"}).then(function(r){if(!r.ok)throw new Error(r.status);return r.json()}).then(function(p){
@@ -171,7 +173,7 @@
     }
     /* 个人想法 */
     var th=document.querySelector(".thought-list");
-    if(th&&p.thoughts&&p.thoughts.length){th.innerHTML=p.thoughts.map(function(t){return "<li>"+bi(t)+"</li>"}).join("")}
+    if(th&&p.thoughts&&p.thoughts.length){th.innerHTML=p.thoughts.map(function(t){return "<li>"+bih(t)+"</li>"}).join("")}
     /* 理念句同步（英文按「, 」断行，中文按「，」断行），同步后重启打字机 */
     if(p.slogan){
       function apply(svg,full,sep){if(!svg||!full)return;var ts=svg.querySelectorAll("text[data-text]");var l1=full,l2="",i=full.indexOf(sep);if(i>-1){l1=full.slice(0,i+sep.length);l2=full.slice(i+sep.length)}if(ts[0])ts[0].setAttribute("data-text",l1);if(ts[1])ts[1].setAttribute("data-text",l2)}
@@ -189,7 +191,8 @@
     if(!list.length){sec.hidden=true;return}	/* wip 留空：隐藏区块 */
     ul.innerHTML=list.map(function(p){
       var st=STATUS[p.status]||{en:p.status,zh:p.status};
-      return '<li><i class="dot" aria-hidden="true"></i><span>'+bi({en:p.name.en+" · "+p.tagline.en,zh:p.name.zh+" · "+p.tagline.zh})+"</span><em>"+bi(st)+"</em></li>";
+      var cls=STATUS[p.status]?(" st-"+p.status):"";
+      return '<li><i class="dot" aria-hidden="true"></i><span>'+bi({en:p.name.en+" · "+p.tagline.en,zh:p.name.zh+" · "+p.tagline.zh})+'</span><em class="'+cls+'">'+bi(st)+"</em></li>";
     }).join("");
     sec.hidden=false;
   }).catch(function(e){if(window.console)console.warn("[lucas] projects.json 加载失败：保留页面静态内容",e)});

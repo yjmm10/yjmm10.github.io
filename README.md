@@ -94,7 +94,7 @@ profile = requests.get("https://yjmm10.github.io/profile.json", timeout=10).json
 | `slogan` | `{en, zh}` | 一句话理念 |
 | `expertise` | `[{en, zh}]` | 擅长领域（大类） |
 | `skills` | `[{category, items}]` | 分方向的详细技能标签 |
-| `thoughts` | `[{en, zh}]` | 个人想法 |
+| `thoughts` | `[{en, zh}]` | 个人想法；支持 `**关键词**` 加粗强调语法 |
 
 **projects.json 字段**（每条项目即一张卡片的完整数据）：
 

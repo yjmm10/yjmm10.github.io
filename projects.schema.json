@@ -128,6 +128,53 @@
           }
         }
       }
+    },
+    "wip": {
+      "type": "array",
+      "description": "首页「在搞的项目」轻量条目（与 projects 正式项目卡片相互独立：wip=首页正在折腾的事，projects=项目页正式上架的项目）",
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "tagline",
+          "status"
+        ],
+        "properties": {
+          "name": {
+            "type": "object",
+            "properties": {
+              "en": {
+                "type": "string"
+              },
+              "zh": {
+                "type": "string"
+              }
+            }
+          },
+          "tagline": {
+            "type": "object",
+            "properties": {
+              "en": {
+                "type": "string"
+              },
+              "zh": {
+                "type": "string"
+              }
+            }
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "in-progress",
+              "tinkering",
+              "polishing",
+              "brewing",
+              "released",
+              "archived"
+            ]
+          }
+        }
+      }
     }
   }
 }

@@ -107,10 +107,16 @@
       <!-- 右：想法 / 在搞的项目 / 个人想法 -->
       <div class="intro">
         <p class="idea reveal" style="--d:.18s" aria-label="技术是思考的延伸，而不是目的本身 / Technology is an extension of thought, not the end in itself."><svg class="idea-svg en" viewBox="0 0 560 78" aria-hidden="true"><defs><linearGradient id="ideaGradE" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="560" y2="60"><stop class="gs0" offset="0"/><stop class="gs1" offset="0.55"/><stop class="gs2" offset="1"/><animateTransform attributeName="gradientTransform" type="translate" values="-140 0; 140 0; -140 0" dur="7s" repeatCount="indefinite"/></linearGradient></defs><text class="idea-text" x="0" y="32" fill="url(#ideaGradE)" data-text="Technology is an extension of thought,"><tspan class="tt"></tspan><tspan class="type-cursor">✦</tspan></text><text class="idea-text" x="560" y="70" text-anchor="end" fill="url(#ideaGradE)" data-text="not the end in itself."><tspan class="tt"></tspan><tspan class="type-cursor">✦</tspan></text></svg><svg class="idea-svg zh" viewBox="0 0 560 78" aria-hidden="true"><defs><linearGradient id="ideaGradZ" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="560" y2="60"><stop class="gs0" offset="0"/><stop class="gs1" offset="0.55"/><stop class="gs2" offset="1"/><animateTransform attributeName="gradientTransform" type="translate" values="-140 0; 140 0; -140 0" dur="7s" repeatCount="indefinite"/></linearGradient></defs><text class="idea-text" x="0" y="32" fill="url(#ideaGradZ)" data-text="技术是思考的延伸，"><tspan class="tt"></tspan><tspan class="type-cursor">✦</tspan></text><text class="idea-text" x="560" y="70" text-anchor="end" fill="url(#ideaGradZ)" data-text="而不是目的本身"><tspan class="tt"></tspan><tspan class="type-cursor">✦</tspan></text></svg></p>
-        <!-- 在搞的项目：数据源 projects.json；无项目时整个区块隐藏，有项目时由 JS 渲染并显示 -->
-        <section class="wip reveal" style="--d:.28s" aria-label="在搞的项目" hidden>
+        <!-- 首页「在搞的项目」：数据源 projects.json 的 wip 数组（与项目页 projects 卡片相互独立）；
+             页面静态内容为无 JS 回退，JS 加载后以 wip 数组为准（为空则隐藏区块） -->
+        <section class="wip reveal" style="--d:.28s" aria-label="在搞的项目">
           <h2><span class="en">Works in progress</span><span class="zh">在搞的项目</span></h2>
-          <ul class="wip-list"></ul>
+          <ul class="wip-list">
+            <li><i class="dot" aria-hidden="true"></i><span><span class="en">DocVLM · multimodal document intelligence</span><span class="zh">DocVLM · 多模态文档智能解析</span></span><em><span class="en">In progress</span><span class="zh">进行中</span></em></li>
+            <li><i class="dot" aria-hidden="true"></i><span><span class="en">fj-starmap · AI startup-policy tracking &amp; insights</span><span class="zh">fj-starmap · AI 创业政策追踪与洞察</span></span><em><span class="en">Tinkering</span><span class="zh">折腾中</span></em></li>
+            <li><i class="dot" aria-hidden="true"></i><span><span class="en">Glean · automated cross-platform distribution</span><span class="zh">Glean · 跨平台内容全自动分发</span></span><em><span class="en">Polishing</span><span class="zh">打磨中</span></em></li>
+            <li><i class="dot" aria-hidden="true"></i><span><span class="en">Academic Skill · research productivity toolkit</span><span class="zh">学术 Skill · 科研效率工具集</span></span><em><span class="en">Brewing</span><span class="zh">构思中</span></em></li>
+          </ul>
         </section>
         <section class="thoughts reveal" style="--d:.38s" aria-label="个人想法">
           <h2><span class="en">Thoughts</span><span class="zh">个人想法</span></h2>
@@ -174,19 +180,19 @@
       if(window.__typeRestart)window.__typeRestart();
     }
   }).catch(function(e){if(window.console)console.warn("[lucas] profile.json 加载失败，使用页面内置内容",e)});
+  /* 首页「在搞的项目」读 wip 数组（项目页正式卡片是 projects 数组，两者独立） */
   fetch("projects.json",{credentials:"omit"}).then(function(r){if(!r.ok)throw new Error(r.status);return r.json()}).then(function(d){
     var sec=document.querySelector(".wip");
     var ul=document.querySelector(".wip-list");
-    var list=(d&&d.projects)||[];
-    if(sec&&!list.length)return;	/* 项目留空：保持区块隐藏 */
-    if(ul&&sec&&list.length){
-      ul.innerHTML=list.map(function(p){
-        var st=STATUS[p.status]||{en:p.status,zh:p.status};
-        return '<li><i class="dot" aria-hidden="true"></i><span>'+bi({en:p.name.en+" · "+p.tagline.en,zh:p.name.zh+" · "+p.tagline.zh})+"</span><em>"+bi(st)+"</em></li>";
-      }).join("");
-      sec.hidden=false;
-    }
-  }).catch(function(e){if(window.console)console.warn("[lucas] projects.json 加载失败：项目区块保持隐藏",e)});
+    if(!sec||!d||!Array.isArray(d.wip))return;	/* 无 wip 字段：保留页面静态内容 */
+    var list=d.wip;
+    if(!list.length){sec.hidden=true;return}	/* wip 留空：隐藏区块 */
+    ul.innerHTML=list.map(function(p){
+      var st=STATUS[p.status]||{en:p.status,zh:p.status};
+      return '<li><i class="dot" aria-hidden="true"></i><span>'+bi({en:p.name.en+" · "+p.tagline.en,zh:p.name.zh+" · "+p.tagline.zh})+"</span><em>"+bi(st)+"</em></li>";
+    }).join("");
+    sec.hidden=false;
+  }).catch(function(e){if(window.console)console.warn("[lucas] projects.json 加载失败：保留页面静态内容",e)});
 })();
 </script>
 </body>

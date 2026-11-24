@@ -109,7 +109,9 @@ profile = requests.get("https://yjmm10.github.io/profile.json", timeout=10).json
 | `image` | uri | 项目封面/配图（可选，卡片顶部渲染缩略图） |
 | `featured` | boolean | 首页「在搞的项目」只展示 featured 项目 |
 
-> 当前 `projects.json` 的 `projects` 为空数组（项目构思中）：项目页显示「陆续上架中」占位，首页隐藏「在搞的项目」区块。填充后自动出现。
+> `projects.json` 里两个数组**相互独立**：
+> - **`wip`** —— 首页「在搞的项目」轻量条目（name + tagline + status），正在折腾的事；
+> - **`projects`** —— 项目页正式项目卡片（含 stack/links/image 全字段），当前为空数组（构思中）：项目页显示「陆续上架中」占位，填充后自动出现。
 
 **图片也走 JSON 引用**：头像 `avatar` / 备用头像 `avatar_alt` / 微信码 `links.wechat_qr` / 赞赏码 `links.reward_qr` 均在 `profile.json` 中维护，页面加载时自动同步这些图片地址；项目封面用 `projects.json` 的 `image` 字段。
 | `links` | object | `github` / `email` / `wechat_qr` |

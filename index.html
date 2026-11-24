@@ -22,7 +22,7 @@
 <link rel="preload" as="image" href="assets/avatar.webp" fetchpriority="high">
 <script>(function(){var t;try{t=localStorage.getItem("theme")}catch(e){}if(t!=="light"&&t!=="dark"){t=window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}document.documentElement.dataset.theme=t})();</script>
 <script>(function(){var l;try{l=localStorage.getItem("lang")}catch(e){}if(l!=="zh"&&l!=="en")l="en";document.documentElement.dataset.lang=l})();</script>
-<link rel="stylesheet" href="assets/style.css?v=39">
+<link rel="stylesheet" href="assets/style.css?v=40">
 </head>
 <body class="home">
 
@@ -107,14 +107,10 @@
       <!-- 右：想法 / 在搞的项目 / 个人想法 -->
       <div class="intro">
         <p class="idea reveal" style="--d:.18s" aria-label="技术是思考的延伸，而不是目的本身 / Technology is an extension of thought, not the end in itself."><svg class="idea-svg en" viewBox="0 0 560 78" aria-hidden="true"><defs><linearGradient id="ideaGradE" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="560" y2="60"><stop class="gs0" offset="0"/><stop class="gs1" offset="0.55"/><stop class="gs2" offset="1"/><animateTransform attributeName="gradientTransform" type="translate" values="-140 0; 140 0; -140 0" dur="7s" repeatCount="indefinite"/></linearGradient></defs><text class="idea-text" x="0" y="32" fill="url(#ideaGradE)" data-text="Technology is an extension of thought,"><tspan class="tt"></tspan><tspan class="type-cursor">✦</tspan></text><text class="idea-text" x="560" y="70" text-anchor="end" fill="url(#ideaGradE)" data-text="not the end in itself."><tspan class="tt"></tspan><tspan class="type-cursor">✦</tspan></text></svg><svg class="idea-svg zh" viewBox="0 0 560 78" aria-hidden="true"><defs><linearGradient id="ideaGradZ" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="560" y2="60"><stop class="gs0" offset="0"/><stop class="gs1" offset="0.55"/><stop class="gs2" offset="1"/><animateTransform attributeName="gradientTransform" type="translate" values="-140 0; 140 0; -140 0" dur="7s" repeatCount="indefinite"/></linearGradient></defs><text class="idea-text" x="0" y="32" fill="url(#ideaGradZ)" data-text="技术是思考的延伸，"><tspan class="tt"></tspan><tspan class="type-cursor">✦</tspan></text><text class="idea-text" x="560" y="70" text-anchor="end" fill="url(#ideaGradZ)" data-text="而不是目的本身"><tspan class="tt"></tspan><tspan class="type-cursor">✦</tspan></text></svg></p>
-        <section class="wip reveal" style="--d:.28s" aria-label="在搞的项目">
+        <!-- 在搞的项目：数据源 projects.json；无项目时整个区块隐藏，有项目时由 JS 渲染并显示 -->
+        <section class="wip reveal" style="--d:.28s" aria-label="在搞的项目" hidden>
           <h2><span class="en">Works in progress</span><span class="zh">在搞的项目</span></h2>
-          <ul class="wip-list">
-            <li><i class="dot" aria-hidden="true"></i><span><span class="en">DocVLM · multimodal document intelligence</span><span class="zh">DocVLM · 多模态文档智能解析</span></span><em><span class="en">In progress</span><span class="zh">进行中</span></em></li>
-            <li><i class="dot" aria-hidden="true"></i><span><span class="en">fj-starmap · AI startup-policy tracking &amp; insights</span><span class="zh">fj-starmap · AI 创业政策追踪与洞察</span></span><em><span class="en">Tinkering</span><span class="zh">折腾中</span></em></li>
-            <li><i class="dot" aria-hidden="true"></i><span><span class="en">Glean · automated cross-platform distribution</span><span class="zh">Glean · 跨平台内容全自动分发系统</span></span><em><span class="en">Polishing</span><span class="zh">打磨中</span></em></li>
-            <li><i class="dot" aria-hidden="true"></i><span><span class="en">Academic Skill · research productivity toolkit</span><span class="zh">学术 Skill · 科研效率工具集</span></span><em><span class="en">Brewing</span><span class="zh">构思中</span></em></li>
-          </ul>
+          <ul class="wip-list"></ul>
         </section>
         <section class="thoughts reveal" style="--d:.38s" aria-label="个人想法">
           <h2><span class="en">Thoughts</span><span class="zh">个人想法</span></h2>
@@ -136,7 +132,7 @@
 <script>(function(){var b=document.getElementById("themeToggle");if(!b)return;b.addEventListener("click",function(){var r=document.documentElement,n=r.dataset.theme==="dark"?"light":"dark";r.dataset.theme=n;try{localStorage.setItem("theme",n)}catch(e){}})})();</script>
 <script>(function(){var b=document.getElementById("langToggle");if(!b)return;function apply(l){document.documentElement.dataset.lang=l;document.documentElement.lang=l==="en"?"en":"zh-CN";var t=document.querySelector("title");if(t&&t.dataset&&t.dataset[l])document.title=t.dataset[l];b.title=l==="en"?"切换到中文 / To Chinese":"Switch to English / 切换到英文";b.setAttribute("aria-label",b.title);try{localStorage.setItem("lang",l)}catch(e){}}b.addEventListener("click",function(){apply(document.documentElement.dataset.lang==="en"?"zh":"en");if(window.__typeRestart)window.__typeRestart()});apply(document.documentElement.dataset.lang||"en")})();</script>
 <script>(function(){var y=new Date().getFullYear();var n=document.querySelectorAll(".y");for(var i=0;i<n.length;i++)n[i].textContent=y})();</script>
-<script>(function(){var f=document.querySelector(".portrait");if(!f)return;var pic=f.querySelector("picture");if(!pic)return;var src=pic.querySelector("source"),img=pic.querySelector("img");if(!src||!img)return;var on=false,A={w:"assets/avatar-alt.webp?v=2",p:"assets/avatar-alt.png?v=2"},B={w:"assets/avatar.webp",p:"assets/avatar.png"};function toggle(){on=!on;var s=on?A:B;src.srcset=s.w;img.src=s.p;}f.setAttribute("role","button");f.setAttribute("tabindex","0");f.setAttribute("aria-label","切换头像 / Switch avatar");f.addEventListener("click",toggle);f.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();toggle();}});})();</script>
+<script>(function(){var f=document.querySelector(".portrait");if(!f)return;var pic=f.querySelector("picture");if(!pic)return;var src=pic.querySelector("source"),img=pic.querySelector("img");if(!src||!img)return;var on=false,A={w:"assets/avatar-alt.webp?v=2",p:"assets/avatar-alt.png?v=2"},B={w:"assets/avatar.webp",p:"assets/avatar.png"};function toggle(){on=!on;var AV=window.__lucasAvatars||{A:A,B:B};var s=on?AV.A:AV.B;src.srcset=s.w;img.src=s.p;}f.setAttribute("role","button");f.setAttribute("tabindex","0");f.setAttribute("aria-label","切换头像 / Switch avatar");f.addEventListener("click",toggle);f.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();toggle();}});})();</script>
 <script>(function(){var reduced=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;var timer=null;function visibleSvg(){var l=document.documentElement.dataset.lang==="zh"?"zh":"en";return document.querySelector(".idea-svg."+l)||document.querySelector(".idea-svg")}function fillAll(){var t=document.querySelectorAll(".idea-svg text[data-text]");for(var i=0;i<t.length;i++){t[i].querySelector(".tt").textContent=t[i].getAttribute("data-text");t[i].querySelector(".type-cursor").style.visibility=i===t.length-1?"visible":"hidden"}}function stop(){if(timer){clearTimeout(timer);timer=null}}function run(){stop();var svg=visibleSvg();if(!svg)return;var lines=[].slice.call(svg.querySelectorAll("text[data-text]"));if(!lines.length)return;var li=0,ci=0,phase="type";function cur(i){for(var k=0;k<lines.length;k++){lines[k].querySelector(".type-cursor").style.visibility=k===i?"visible":"hidden"}}function step(){var L=lines[li];if(!L)return;var tt=L.querySelector(".tt"),full=L.getAttribute("data-text")||"";if(phase==="type"||phase==="gap"){cur(li);if(phase==="gap"){phase="type";timer=setTimeout(step,120);return}ci++;tt.textContent=full.slice(0,ci);if(ci>=full.length){li++;if(li>=lines.length){phase="hold";timer=setTimeout(step,2600);return}phase="gap";timer=setTimeout(step,300);return}timer=setTimeout(step,90)}else if(phase==="hold"){cur(lines.length-1);for(var k=0;k<lines.length;k++){lines[k].querySelector(".tt").textContent=""}li=0;ci=0;phase="wait";timer=setTimeout(step,600)}else{cur(0);phase="type";timer=setTimeout(step,120)}}step()}function start(){if(reduced){fillAll();return}run()}window.__typeRestart=function(){stop();start()};if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",start)}else{start()}})();</script>
 
 <script>
@@ -148,6 +144,18 @@
   var STATUS={"in-progress":{en:"In progress",zh:"进行中"},"tinkering":{en:"Tinkering",zh:"折腾中"},"polishing":{en:"Polishing",zh:"打磨中"},"brewing":{en:"Brewing",zh:"构思中"},"released":{en:"Released",zh:"已上线"},"archived":{en:"Archived",zh:"已归档"}};
   window.__lucasStatus=STATUS;
   fetch("profile.json",{credentials:"omit"}).then(function(r){if(!r.ok)throw new Error(r.status);return r.json()}).then(function(p){
+    /* 图片同步：头像（导航品牌/主图/点击备用）、微信码、赞赏码均引用 profile.json 地址 */
+    if(p.avatar){
+      var png=function(u){return String(u).replace(/\.webp$/,".png")};
+      var AV={B:{w:p.avatar,p:png(p.avatar)},A:p.avatar_alt?{w:p.avatar_alt,p:png(p.avatar_alt)}:null};
+      window.__lucasAvatars={B:AV.B,A:AV.A||{w:"assets/avatar-alt.webp?v=2",p:"assets/avatar-alt.png?v=2"}};
+      var nb=document.querySelector(".brand img");if(nb)nb.src=p.avatar;
+      var ns=document.querySelector(".portrait picture source");if(ns)ns.srcset=AV.B.w;
+      var ni=document.querySelector(".portrait picture img");if(ni)ni.src=AV.B.p;
+    }
+    var lk=p.links||{};
+    if(lk.wechat_qr){var wi=document.querySelector("img[src*='wechat-qr']");if(wi)wi.src=lk.wechat_qr}
+    if(lk.reward_qr){var ri=document.querySelector("img[src*='reward-qr']");if(ri)ri.src=lk.reward_qr}
     /* 擅长领域 + 悬停详情 */
     var sk=document.querySelector(".skills");
     if(sk&&p.skills&&p.skills.length){
@@ -167,15 +175,18 @@
     }
   }).catch(function(e){if(window.console)console.warn("[lucas] profile.json 加载失败，使用页面内置内容",e)});
   fetch("projects.json",{credentials:"omit"}).then(function(r){if(!r.ok)throw new Error(r.status);return r.json()}).then(function(d){
+    var sec=document.querySelector(".wip");
     var ul=document.querySelector(".wip-list");
     var list=(d&&d.projects)||[];
-    if(ul&&list.length){
+    if(sec&&!list.length)return;	/* 项目留空：保持区块隐藏 */
+    if(ul&&sec&&list.length){
       ul.innerHTML=list.map(function(p){
         var st=STATUS[p.status]||{en:p.status,zh:p.status};
         return '<li><i class="dot" aria-hidden="true"></i><span>'+bi({en:p.name.en+" · "+p.tagline.en,zh:p.name.zh+" · "+p.tagline.zh})+"</span><em>"+bi(st)+"</em></li>";
       }).join("");
+      sec.hidden=false;
     }
-  }).catch(function(e){if(window.console)console.warn("[lucas] projects.json 加载失败，使用页面内置内容",e)});
+  }).catch(function(e){if(window.console)console.warn("[lucas] projects.json 加载失败：项目区块保持隐藏",e)});
 })();
 </script>
 </body>

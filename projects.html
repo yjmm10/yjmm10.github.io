@@ -21,7 +21,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.7.0/style.css">
 <script>(function(){var t;try{t=localStorage.getItem("theme")}catch(e){}if(t!=="light"&&t!=="dark"){t=window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}document.documentElement.dataset.theme=t})();</script>
 <script>(function(){var l;try{l=localStorage.getItem("lang")}catch(e){}if(l!=="zh"&&l!=="en")l="en";document.documentElement.dataset.lang=l})();</script>
-<link rel="stylesheet" href="assets/style.css?v=39">
+<link rel="stylesheet" href="assets/style.css?v=40">
 </head>
 <body>
 
@@ -91,7 +91,8 @@
       if(L.homepage)links+='<a href="'+esc(L.homepage)+'" target="_blank" rel="noopener">'+bi({en:"Visit",zh:"访问"})+"</a>";
       if(L.github)links+='<a href="'+esc(L.github)+'" target="_blank" rel="noopener">GitHub</a>';
       if(L.docs)links+='<a href="'+esc(L.docs)+'" target="_blank" rel="noopener">'+bi({en:"Docs",zh:"文档"})+"</a>";
-      return '<article class="project-card"><div class="pc-head"><h3 class="pc-name">'+bi(p.name)+'</h3><span class="pc-status st-'+esc(p.status||"brewing")+'">'+bi(st)+"</span></div>"
+      return '<article class="project-card">'+((p.image)?'<img class="pc-img" src="'+esc(p.image)+'" loading="lazy" decoding="async" alt="">':"")
+        +'<div class="pc-head"><h3 class="pc-name">'+bi(p.name)+'</h3><span class="pc-status st-'+esc(p.status||"brewing")+'">'+bi(st)+"</span></div>"
         +'<p class="pc-tagline">'+bi(p.tagline||p.description||{})+"</p>"
         +((p.stack&&p.stack.length)?'<div class="pc-stack">'+p.stack.map(function(s){return "<span>"+bi(s)+"</span>"}).join("")+"</div>":"")
         +(links?'<div class="pc-links">'+links+"</div>":"")

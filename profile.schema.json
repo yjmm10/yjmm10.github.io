@@ -4,25 +4,57 @@
   "title": "Lucas Profile",
   "description": "yjmm10.github.io 个人信息开放数据接口的数据结构。字段中 {en, zh} 为中英双语对象，引用方可按需取用。",
   "type": "object",
-  "required": ["name", "handle", "role", "avatar", "website", "links", "updated"],
+  "required": [
+    "name",
+    "handle",
+    "role",
+    "avatar",
+    "website",
+    "links",
+    "updated"
+  ],
   "properties": {
-    "$schema": { "type": "string" },
-    "name": { "type": "string", "description": "常用名，如 Lucas" },
-    "handle": { "type": "string", "description": "GitHub 用户名" },
+    "$schema": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string",
+      "description": "常用名，如 Lucas"
+    },
+    "handle": {
+      "type": "string",
+      "description": "GitHub 用户名"
+    },
     "role": {
       "type": "object",
       "properties": {
-        "en": { "type": "string" },
-        "zh": { "type": "string" }
+        "en": {
+          "type": "string"
+        },
+        "zh": {
+          "type": "string"
+        }
       }
     },
-    "avatar": { "type": "string", "format": "uri", "description": "头像图片绝对地址" },
-    "website": { "type": "string", "format": "uri", "description": "个人主页地址" },
+    "avatar": {
+      "type": "string",
+      "format": "uri",
+      "description": "头像图片绝对地址"
+    },
+    "website": {
+      "type": "string",
+      "format": "uri",
+      "description": "个人主页地址"
+    },
     "slogan": {
       "type": "object",
       "properties": {
-        "en": { "type": "string" },
-        "zh": { "type": "string" }
+        "en": {
+          "type": "string"
+        },
+        "zh": {
+          "type": "string"
+        }
       }
     },
     "expertise": {
@@ -30,8 +62,12 @@
       "items": {
         "type": "object",
         "properties": {
-          "en": { "type": "string" },
-          "zh": { "type": "string" }
+          "en": {
+            "type": "string"
+          },
+          "zh": {
+            "type": "string"
+          }
         }
       }
     },
@@ -41,19 +77,47 @@
       "items": {
         "type": "object",
         "properties": {
-          "en": { "type": "string" },
-          "zh": { "type": "string" }
+          "en": {
+            "type": "string"
+          },
+          "zh": {
+            "type": "string"
+          }
         }
       }
     },
     "links": {
       "type": "object",
       "properties": {
-        "github": { "type": "string", "format": "uri" },
-        "email": { "type": "string", "format": "email" },
-        "wechat_qr": { "type": "string", "format": "uri", "description": "微信二维码图片地址" }
+        "github": {
+          "type": "string",
+          "format": "uri"
+        },
+        "email": {
+          "type": "string",
+          "format": "email"
+        },
+        "wechat_qr": {
+          "type": "string",
+          "format": "uri",
+          "description": "微信二维码图片地址"
+        },
+        "reward_qr": {
+          "type": "string",
+          "format": "uri",
+          "description": "赞赏收款码图片地址"
+        }
       }
     },
-    "updated": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$", "description": "数据最后更新日期（YYYY-MM-DD）" }
+    "updated": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+      "description": "数据最后更新日期（YYYY-MM-DD）"
+    },
+    "avatar_alt": {
+      "type": "string",
+      "format": "uri",
+      "description": "备用头像（点击头像切换，可选）"
+    }
   }
 }

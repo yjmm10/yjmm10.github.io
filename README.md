@@ -106,7 +106,12 @@ profile = requests.get("https://yjmm10.github.io/profile.json", timeout=10).json
 | `status` | enum | `in-progress` 进行中 / `tinkering` 折腾中 / `polishing` 打磨中 / `brewing` 构思中 / `released` 已上线 / `archived` 已归档。**枚举即样式**：砖红 / 金 / 蓝 / 灰 / 绿 / 浅灰 |
 | `stack` | `[{en, zh}]` | 技术/关键词标签行（可选） |
 | `links` | object | `homepage` / `github` / `docs`（可选，有才渲染链接行） |
+| `image` | uri | 项目封面/配图（可选，卡片顶部渲染缩略图） |
 | `featured` | boolean | 首页「在搞的项目」只展示 featured 项目 |
+
+> 当前 `projects.json` 的 `projects` 为空数组（项目构思中）：项目页显示「陆续上架中」占位，首页隐藏「在搞的项目」区块。填充后自动出现。
+
+**图片也走 JSON 引用**：头像 `avatar` / 备用头像 `avatar_alt` / 微信码 `links.wechat_qr` / 赞赏码 `links.reward_qr` 均在 `profile.json` 中维护，页面加载时自动同步这些图片地址；项目封面用 `projects.json` 的 `image` 字段。
 | `links` | object | `github` / `email` / `wechat_qr` |
 | `updated` | `YYYY-MM-DD` | 数据最后更新日期 |
 

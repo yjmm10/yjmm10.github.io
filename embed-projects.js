@@ -21,18 +21,9 @@
   var maxCount = parseInt(script.getAttribute("data-count") || "0", 10);
   var targetSel = script.getAttribute("data-target");
 
-  /* 与 projects.json 同步的内置快照（同步首绘，避免跳动） */
+  /* 与 projects.json 同步的内置快照（同步首绘，避免跳动）；当前项目留空，构思好后往 projects.json 填充并同步此处 */
   var SNAPSHOT = {
-    projects: [
-      { id: "docvlm", name: { en: "DocVLM", zh: "DocVLM" }, tagline: { en: "Multimodal document intelligence", zh: "多模态文档智能解析" }, status: "in-progress",
-        stack: [{ en: "Document AI", zh: "文档智能" }, { en: "VLM", zh: "视觉语言模型" }, { en: "RAG", zh: "检索增强" }] },
-      { id: "fj-starmap", name: { en: "fj-starmap", zh: "fj-starmap" }, tagline: { en: "AI startup-policy tracking & insights", zh: "AI 创业政策追踪与洞察" }, status: "tinkering",
-        stack: [{ en: "LLM insights", zh: "LLM 洞察" }, { en: "Data aggregation", zh: "数据聚合" }] },
-      { id: "glean", name: { en: "Glean", zh: "Glean" }, tagline: { en: "Automated cross-platform distribution", zh: "跨平台内容全自动分发" }, status: "polishing",
-        stack: [{ en: "Automation", zh: "自动化" }, { en: "Platform APIs", zh: "平台 API" }] },
-      { id: "academic-skill", name: { en: "Academic Skill", zh: "学术 Skill" }, tagline: { en: "Research productivity toolkit", zh: "科研效率工具集" }, status: "brewing",
-        stack: [{ en: "Paper reading", zh: "论文精读" }, { en: "Writing pipeline", zh: "写作流水线" }] }
-    ],
+    projects: [],
     updated: "2026-11-20"
   };
   var STATUS = {
@@ -82,6 +73,7 @@
       if (Lo.github) links += '<a href="' + esc(Lo.github) + '" target="_blank" rel="noopener" style="color:' + c + ';font-weight:600;text-decoration:none">GitHub</a>';
       if (Lo.docs) links += '<a href="' + esc(Lo.docs) + '" target="_blank" rel="noopener" style="color:' + c + ';font-weight:600;text-decoration:none">' + (L === "zh" ? "文档" : "Docs") + "</a>";
       return '<div style="padding:18px 20px;border:1px solid ' + line + ';border-radius:14px;background:' + bg + ';color:' + ink + ';box-shadow:0 8px 24px rgba(0,0,0,.07);max-width:420px">' +
+        (p.image ? '<img src="' + esc(p.image) + '" loading="lazy" alt="" style="display:block;width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:10px;margin-bottom:12px">' : "") +
         '<div style="display:flex;align-items:center;justify-content:space-between;gap:10px">' +
         '<b style="font-size:16px">' + esc(t(p.name)) + "</b>" +
         '<span style="flex:none;font-size:11px;font-weight:600;padding:3px 10px;border-radius:999px;border:1px solid ' + c + '55;background:' + c + '14;color:' + c + ';white-space:nowrap">' + esc(t(st)) + "</span></div>" +

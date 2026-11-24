@@ -792,3 +792,4 @@ footer .top-btn svg { width: 13px; height: 13px; }
 .pc-links { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 4px; font-size: 12.5px; }
 .pc-links a { color: var(--rust); font-weight: 600; text-decoration: none; }
 .pc-links a:hover { text-decoration: underline; }
+.pc-img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 10px; margin: -4px 0 6px; }

@@ -4,56 +4,128 @@
   "title": "Lucas Projects",
   "description": "yjmm10.github.io 项目数据接口。status 为固定枚举，渲染端按枚举套用固定样式：in-progress=砖红 / tinkering=金 / polishing=蓝 / brewing=灰 / released=绿 / archived=浅灰。所有文案字段为 {en, zh} 双语对象。",
   "type": "object",
-  "required": ["projects", "updated"],
+  "required": [
+    "projects",
+    "updated"
+  ],
   "properties": {
-    "$schema": { "type": "string" },
-    "version": { "type": "number", "description": "数据结构版本号" },
-    "updated": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$", "description": "数据最后更新日期（YYYY-MM-DD）" },
+    "$schema": {
+      "type": "string"
+    },
+    "version": {
+      "type": "number",
+      "description": "数据结构版本号"
+    },
+    "updated": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+      "description": "数据最后更新日期（YYYY-MM-DD）"
+    },
     "projects": {
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["id", "name", "tagline", "status"],
+        "required": [
+          "id",
+          "name",
+          "tagline",
+          "status"
+        ],
         "properties": {
-          "id": { "type": "string", "description": "项目唯一标识（小写字母/数字/连字符）" },
+          "id": {
+            "type": "string",
+            "description": "项目唯一标识（小写字母/数字/连字符）"
+          },
+          "image": {
+            "type": "string",
+            "format": "uri",
+            "description": "项目封面/配图（可选，卡片顶部渲染缩略图）"
+          },
           "name": {
             "type": "object",
-            "properties": { "en": { "type": "string" }, "zh": { "type": "string" } },
+            "properties": {
+              "en": {
+                "type": "string"
+              },
+              "zh": {
+                "type": "string"
+              }
+            },
             "description": "项目名（卡片标题）"
           },
           "tagline": {
             "type": "object",
-            "properties": { "en": { "type": "string" }, "zh": { "type": "string" } },
+            "properties": {
+              "en": {
+                "type": "string"
+              },
+              "zh": {
+                "type": "string"
+              }
+            },
             "description": "一句话简介（卡片副标题）"
           },
           "description": {
             "type": "object",
-            "properties": { "en": { "type": "string" }, "zh": { "type": "string" } },
+            "properties": {
+              "en": {
+                "type": "string"
+              },
+              "zh": {
+                "type": "string"
+              }
+            },
             "description": "详细描述（可选，卡片展开/详情页用）"
           },
           "status": {
             "type": "string",
-            "enum": ["in-progress", "tinkering", "polishing", "brewing", "released", "archived"],
+            "enum": [
+              "in-progress",
+              "tinkering",
+              "polishing",
+              "brewing",
+              "released",
+              "archived"
+            ],
             "description": "固定状态枚举，UI 据此套用固定颜色样式"
           },
           "stack": {
             "type": "array",
             "items": {
               "type": "object",
-              "properties": { "en": { "type": "string" }, "zh": { "type": "string" } }
+              "properties": {
+                "en": {
+                  "type": "string"
+                },
+                "zh": {
+                  "type": "string"
+                }
+              }
             },
             "description": "技术栈/关键词标签（卡片小标签行，可选）"
           },
           "links": {
             "type": "object",
             "properties": {
-              "homepage": { "type": "string", "format": "uri" },
-              "github": { "type": "string", "format": "uri" },
-              "docs": { "type": "string", "format": "uri" }
+              "homepage": {
+                "type": "string",
+                "format": "uri"
+              },
+              "github": {
+                "type": "string",
+                "format": "uri"
+              },
+              "docs": {
+                "type": "string",
+                "format": "uri"
+              }
             },
             "description": "项目链接（可选，有才渲染链接行）"
           },
-          "featured": { "type": "boolean", "description": "是否重点展示（首页「在搞的项目」只取 featured）" }
+          "featured": {
+            "type": "boolean",
+            "description": "是否重点展示（首页「在搞的项目」只取 featured）"
+          }
         }
       }
     }
